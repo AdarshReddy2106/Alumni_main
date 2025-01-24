@@ -1,0 +1,93 @@
+.refer1 {
+    display: flex;
+    width: 100%;
+    margin: 2rem auto;
+    /* max-width: 75rem; */
+    align-items: center;
+    flex-direction: column;
+    background: rgb(252, 249, 249);
+    justify-content: space-between;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    color: rgb(239, 159, 32);
+    max-width: 60rem;
+    justify-content: center;
+    margin: 2rem 1rem;
+    flex-wrap: wrap;
+    /* Allow elements to wrap on small screens */
+}
+
+.DEAN {
+    object-fit: cover;
+    height: 15rem;
+    width: 13rem;
+    margin-right: 1rem;
+    margin-top: 2rem;
+}
+
+.length {
+    width: 100%;
+    /* Make the hr element take full width */
+    max-width: 40rem;
+    /* Constrain the width on larger screens */
+}
+
+.DirectorMessage {
+    text-align: center;
+    margin-right: 0;
+    margin-left: 0;
+    flex: 1;
+    /* Allow the div to grow and shrink as needed */
+}
+
+.headfont {
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.namefont {
+    font-size: large;
+}
+
+.message {
+    margin: 2rem 1rem;
+    max-width: 60rem;
+}
+
+.paragraph {
+    margin: 0.75rem 0;
+    font-size: medium;
+}
+
+@media screen and (max-width: 700px) {
+    .name {
+        flex-direction: column;
+        align-items: center;
+        margin: 1rem 0;
+    }
+    .DEAN {
+        height: 7rem;
+        width: 7rem;
+        margin: 1rem 0;
+    }
+    .DirectorMessage {
+        margin: 0 1rem;
+    }
+    .headfont {
+        font-size: medium;
+        margin: 0.2rem 0;
+    }
+    .namefont {
+        font-size: small;
+    }
+    .message {
+        margin: 0.25rem 0rem;
+    }
+    .paragraph {
+        margin: 0.5rem 0;
+        font-size: small;
+    }
+}
