@@ -13,6 +13,7 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 import Techclub from "./pages/TechclubMembers"
 import Managementclub from "./pages/ManagementclubMembers"
 import LIfeAtIITPKD from "./pages/LIfeAtIITPKD"
+import NotableAlumni from "./pages/NotableAlumni"
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/TechClubMembers" element={<Techclub/>}/> 
         <Route path="/ManagementClubMembers" element={<Managementclub />} />
         <Route path="/LifeAtIITPKD" element={<LIfeAtIITPKD/>}/>
+        <Route path="/NotableAlumni" element={<NotableAlumni/>}/>
        
       </Routes>
       </Router>

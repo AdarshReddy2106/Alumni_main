@@ -1,0 +1,93 @@
+.NALcontainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;       
+}
+
+.NALwrapper {
+    max-width: 75rem;
+    padding: clamp(0px,3vw,50px);
+    padding-left: clamp(0px,8vw,100px);
+    padding-right: clamp(0px,8vw,100px);
+    background-color: #FCF9F9;
+
+}
+
+#NALtitle {
+    color: rgba(255, 140, 0, 0.796);
+    text-align: center;
+}
+
+.ImageSectionLink {
+    color: #000;
+}
+
+.NALImageSection {
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    max-height: 20rem;
+    max-width: 70rem;
+    border-radius: 1rem;
+    box-shadow: 0 0.3rem 0.6rem 0 gray;
+    transition: 0.2s;
+}
+
+.NALImageSection:hover {
+    background-color: rgba(255, 166, 0, 0.778);
+    color: white;
+    box-shadow: 0 0.6rem 1.2rem 0 rgb(25, 25, 25);
+}
+
+.NALImage {
+    width: 40%;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.NALText{
+    width: 60%;
+}
+.NALText p {
+    font-size: 1.25rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
+
+.NALpara {
+    height: 85%;
+    padding: 2rem;
+    padding-top: 1rem;
+}
+
+.NALpara h3 {
+    text-align: center;
+    font-size: 1.2rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+.NALLink {
+    text-align: center;
+}
+
+.NALLink img {
+    height: 2rem;
+    width: auto;
+}
+
+
+/* .NALLink p{
+    font-weight: bold;
+    font-size: 1.15rem;
+} */
+/* 
