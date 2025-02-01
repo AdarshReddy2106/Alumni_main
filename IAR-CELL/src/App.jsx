@@ -12,6 +12,8 @@ import Event6 from "./pages/Events/Event6"
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 import Techclub from "./pages/TechclubMembers"
 import Managementclub from "./pages/ManagementclubMembers"
+import LIfeAtIITPKD from "./pages/LIfeAtIITPKD"
+
 function App() {
 
   return (
@@ -30,9 +32,11 @@ function App() {
         <Route path="/Event4" element={<Event4 />} />
         <Route path="/Event5" element={<Event5 />} />
         <Route path="/Event6" element={<Event6 />} />
-        <Route path="/TechClubMembers" element={<Techclub/>}/>
+        <Route path="/TechClubMembers" element={<Techclub/>}/> 
         <Route path="/ManagementClubMembers" element={<Managementclub />} />
-        </Routes>
+        <Route path="/LifeAtIITPKD" element={<LIfeAtIITPKD/>}/>
+       
+      </Routes>
       </Router>
       
           
