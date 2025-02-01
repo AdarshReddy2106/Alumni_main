@@ -4,15 +4,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center; */
-
     height: auto;
     width: 100vw;
     margin: 0 auto;
     max-width: 75rem;
-        
 }
 
-.LAIwrapper{
+.LAIwrapper {
     width: 100%;
     padding: 3rem;
     background-color: #FCF9F9;
@@ -22,8 +20,8 @@
     color: darkorange;
 }
 
-img{
-    width:100%;
+img {
+    width: 100%;
     height: auto;
 }
 
@@ -38,7 +36,7 @@ p {
 
 ul {
     padding-bottom: 3rem;
-    padding-left: 1.5rem;   
+    padding-left: 1.5rem;
 }
 
 ul li a {
