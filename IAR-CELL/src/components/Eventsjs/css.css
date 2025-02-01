@@ -1,0 +1,13 @@
+.subEvents {
+    height: auto;
+    min-height: 10rem;
+    width: 100vw;
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 1rem;
+    max-width: 75rem;
+    background: white;
+    font: larger;
+    /* box-shadow: 0 4px 10px rgba(31, 31, 28, 0.5);
+        border-radius: 2rem; */
+}
