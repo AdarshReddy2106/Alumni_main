@@ -1,13 +1,14 @@
 // import React from 'react'
 import { Link } from 'react-router-dom';
 import "./TechMembers.css"
-import Harika from "../../../public/assests/club/harika.jpeg"
-import Saikiran from "../../../public/assests/club/sai_kiran.jpeg"
-import Jakadeer from "../../../public/assests/club/Jakadeer.jpeg"
-import Chaturbhuja from "../../../public/assests/club/chaturbhuja.jpeg"
-import Nagendra from "../../../public/assests/club/Nagendra.jpeg"
-import Simeon from "../../../public/assests/club/simeon.jpeg"
-import arjun from "../../../public/assests/club/arjun.jpeg"
+
+import Harika from "../../assets/club/harika.jpeg"
+import Saikiran from "../../assets/club/sai_kiran.jpeg"
+import Jakadeer from "../../assets/club/Jakadeer.jpeg"
+import Chaturbhuja from "../../assets/club/chaturbhuja.jpeg"
+import Nagendra from "../../assets/club/Nagendra.jpeg"
+import Simeon from "../../assets/club/simeon.jpeg"
+import arjun from "../../assets/club/arjun.jpeg"
 
 const ClubMembers = () => {
   return (

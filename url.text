@@ -7,3 +7,25 @@ https://zapier.com/apps/mysql/integrations/netlify
 =======
 Site ID:   8a7cb901-6e7c-42a1-9489-4bf3d1395de1
 >>>>>>> 1f4d2fee108ee5162d929b18a98ba32efc7b5ec0
+
+
+
+
+CREATE TABLE year_2024 (
+  CampusID BIGINT NULL,
+  Name TEXT,
+  Email TEXT NULL,
+  ContactNumber1 TEXT NULL,
+  ContactNumber2 TEXT NULL,
+  WhatsAppNumber TEXT NULL,
+  CountryCode BIGINT NULL,
+  LikedlnProfile TEXT NULL,
+  Deparment TEXT,
+  Degree TEXT,
+  YearOfPassOut BIGINT,
+  Hostel TEXT NULL,
+  Current_Location TEXT NULL,
+  Organisation TEXT NULL,
+  Designation TEXT NULL,
+  Awards TEXT NULL
+); these all the details will be returned 

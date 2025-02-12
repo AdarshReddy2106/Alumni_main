@@ -1,11 +1,12 @@
 // import React from 'react';
 import './contact.css'
-// import k from "../../../public/assests/club/sru"
-import Srujana from "../../../public/assests/club/srujana jasmin.jpeg"
-import likitha from "../../../public/assests/club/likitha.jpeg"
-import Aakansha from "../../../public/assests/club/aakansha.jpeg"
-import Harika from "../../../public/assests/club/harika.jpeg"
-import Nishant from "../../../public/assests/club/vibhav.jpeg"
+// import k from "../../assets/club/srujana"
+
+import Srujana from "../../assets/club/srujana_jasmin.jpeg"
+import likitha from "../../assets/club/likitha.jpeg"
+import Aakansha from "../../assets/club/aakansha.jpeg"
+import Harika from "../../assets/club/harika.jpeg"
+import Nishant from "../../assets/club/vibhav.jpeg"
 import { Link } from 'react-router-dom';
 
 
