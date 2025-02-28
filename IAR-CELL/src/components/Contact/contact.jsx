@@ -95,7 +95,7 @@ const ContactPage = () => {
       <div className="contact-page">
       <h1>Core Team</h1>
       <div className="contact-cards">
-        <div className="contact-card">
+        {/* <div className="contact-card">
           <div className="card-image">
             <img src={likitha} alt="Dr. Dinesh Setti" />
           </div>
@@ -109,7 +109,7 @@ const ContactPage = () => {
               <p className='title'><a href="https://www.linkedin.com/in/kamireddy-likhitha-99152b311?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className='title' target='_blank'>linkedin</a></p>
               
           </div>
-          </div>
+          </div> */}
           <div className="contact-card">
           <div className="card-image">
             <img src={Aakansha} alt="Dr. Dinesh Setti" />
@@ -174,12 +174,7 @@ const ContactPage = () => {
                   </Link>
                   
           </div>
-          <div className="techmembers">
-                  <Link to="/ManagementClubMembers" >
-                      <p className="tech">Meet The IR Team</p>
-                  </Link>
-                  
-              </div><div className="techmembers">
+        <div className="techmembers">
                   <Link to="/ManagementClubMembers" >
                       <p className="tech">Meet The AR Team</p>
                   </Link>

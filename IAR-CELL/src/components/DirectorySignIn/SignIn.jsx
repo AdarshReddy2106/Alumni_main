@@ -18,8 +18,11 @@ import { useState, useEffect } from 'react';
 
 const REDIRECT_URI = '/AlumniDirectory';
 const port = 3000;
-const ip = import.meta.env.VITE_IP_ADDRESS;
+const ip = import.meta.env.VITE_IP_ADDRESS || "http://localhost";
+
 const GoogleClientID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+console.log("google client ID: ", GoogleClientID);
+console.log("Google Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
 
 
 

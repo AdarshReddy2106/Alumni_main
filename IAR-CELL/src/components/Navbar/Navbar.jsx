@@ -3,7 +3,8 @@ import logo from '../../assets/iar.png';
 import iitpkd from '../../assets/iit_pkd.jpg';
 
 import contact from '../../assets/contact.png';
-import menu from "../../assets/menu.png";
+import menu from "../../assets/menu.svg";
+// import menu from "../../assets/menu.png";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 // import useStore from '../../store';
@@ -50,12 +51,12 @@ const Navbar = () => {
               {/* <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
               <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
               <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a> */}
-              <Link to="/Event1" className="dropdownListItem">Cosmos</Link>
-              <Link to="/Event2" className="dropdownListItem">FAM</Link>
-              <Link to="/Event3" className="dropdownListItem">Reconnection</Link>
-              <Link to="/Event4" className="dropdownListItem">SAVAGE TALKS</Link>
-              <Link to="/Event5" className="dropdownListItem">Informal session</Link>
-              <Link to="/Event6" className="dropdownListItem">Student Mentorship</Link>
+              <Link to="/Event1" className="dropdownListItem">SAC Alumni Meet</Link>
+              <Link to="/Event2" className="dropdownListItem">CV Writing Session </Link>
+              <Link to="/Event3" className="dropdownListItem">Session on  Building a tech startup</Link>
+              <Link to="/Event4" className="dropdownListItem">Informal Alumni Student Meet</Link>
+              {/* <Link to="/Event5" className="dropdownListItem">Informal session</Link> */}
+              {/* <Link to="/Event6" className="dropdownListItem">Student Mentorship</Link> */}
             </div>
           )}
         </div>
@@ -69,29 +70,21 @@ const Navbar = () => {
             )
           }
         </div> */}
-        <Link to="/Giving Back" className="desktopMenuListItem">Activities</Link>
-        <Link to="/Giving Back" className="desktopMenuListItem">Giving Back</Link>
+        {/* <Link to="/Giving Back" className="desktopMenuListItem">Activities</Link> */}
+        {/* <Link to="/Giving Back" className="desktopMenuListItem">Giving Back</Link> */}
 
 
-        {token
-        ?
-        <Link to="#" onClick={()=>setToken(false)} className="desktopMenuListItem">Logout</Link>
-        :
-        <p></p>
+      {token
+        ?<Link to="#" onClick={()=>setToken(false)} className="desktopMenuListItem">Logout</Link>:<p></p>
         }
 
         <div>
-        {token
-        ?
-        <p className="desktopMenuListItem">Profile</p>
-        :
-        <p></p>
-        }
+        {token?<p className="desktopMenuListItem">Profile</p>:<p></p>}
         </div>
 
       </div>
       
-      <img src={logo} alt="logo" className="logo" />
+      <img src={logo} alt="logo" className="logo desktopMenu" />
 
       
 
@@ -109,19 +102,32 @@ const Navbar = () => {
         <Link to="/" className="ListItem" onClick={() => setShowMenu(false)}>Home</Link>
         <Link to="/about" className="ListItem" onClick={() => setShowMenu(false)}>About us</Link>
         <Link to="/LifeAtIITPKD" className="ListItem" onClick={() => setShowMenu(false)}>Life At IITPKD</Link>
-        <Link to="/NotableAlumni" className="ListItem" onClick={() => setShowMenu(false)}>Notable Alumni</Link>
-        <Link to="/AlumniDirectory" className="ListItem" onClick={() => setShowMenu(false)}>Alumni Directory</Link>
-        <Link to="/Contact" className="ListItem" onClick={() => setShowMenu(false)}>Contact Us</Link>
+        <div className="ListItem" onClick={() => setShowDropdown(!showDropdown)}>Alumni
+          {showDropdown && (
+            <div className="dropdownMenu">
+
+
+              <Link to="/NotableAlumni" target="_blank" rel="noopener noreferrer" className="ListItem" onClick={() => { setShowMenu(false); setShowDropdown(false); }}>Notable Alumni</Link>
+              <Link to="/AlumniDirectorySignIn" className="ListItem">Alumni Directory</Link>
+            </div>
+          )}
+        </div>
         <div className="ListItem" onClick={() => setShowDropdown(!showDropdown)}>
           Alumni
         </div>
         {showDropdown && (
           <>
+              <Link to="/NotableAlumni" target="_blank" rel="noopener noreferrer" className="ListItem" onClick={() => { setShowMenu(false); setShowDropdown(false); }}>Notable Alumni</Link>
+            
             <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" className="ListItem" onClick={() => { setShowMenu(false); setShowDropdown(false); }}>YouTube</a>
             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="ListItem" onClick={() => { setShowMenu(false); setShowDropdown(false); }}>Instagram</a>
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="ListItem" onClick={() => { setShowMenu(false); setShowDropdown(false); }}>Facebook</a>
           </>
         )}
+        {/* <Link to="/NotableAlumni" className="ListItem" onClick={() => setShowMenu(false)}>Notable Alumni</Link>
+        <Link to="/AlumniDirectory" className="ListItem" onClick={() => setShowMenu(false)}>Alumni Directory</Link> */}
+        <Link to="/Contact" className="ListItem" onClick={() => setShowMenu(false)}>Contact Us</Link>
+      
       
 
       </div>
