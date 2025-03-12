@@ -18,7 +18,7 @@
 --
 -- Table structure for table `year_2024`
 --
-
+USE iar_cell;
 DROP TABLE IF EXISTS `year_2024`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
