@@ -13,7 +13,7 @@ import {
 import logo from '../../assets/iar.png';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
+import useStore from '../../Store';
 
 
 const REDIRECT_URI = '/AlumniDirectory';
@@ -26,7 +26,8 @@ console.log("Google Client ID:", import.meta.env.VITE_GOOGLE_CLIENT_ID);
 
 
 
-const SignIn = ({ setToken }) => {
+const SignIn = () => {
+    const { setToken } = useStore();
     const navigate = useNavigate();
     const [errorMessage, setErrorMessage] = useState('');
     const [headerText,setHeaderText] = useState('Alumni Association IIT Palakkad');
@@ -119,7 +120,7 @@ const SignIn = ({ setToken }) => {
 
             if (data.exists) {
                 setToken(true);
-                navigate(REDIRECT_URI);
+                // navigate(REDIRECT_URI);
             } 
             else {
                 console.log('Email does not exist in the database or is undefined');
@@ -136,7 +137,7 @@ const SignIn = ({ setToken }) => {
 
     const handleNormalLogin = async (email) => {
         setToken(true);
-        navigate(REDIRECT_URI);
+        // navigate(REDIRECT_URI);
         
     };
 

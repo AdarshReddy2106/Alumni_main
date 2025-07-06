@@ -12,6 +12,7 @@ import useStore from '../../Store';
 
 
 const Navbar = () => {
+
   const [showMenu, setShowMenu] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -20,7 +21,9 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <img src={iitpkd} alt="logo" className="logo2" />
+      <img src={logo} alt="logo" className="logo" />
+
+      {/* <img src={iitpkd} alt="logo" className="logo2" /> */}
       <div className="desktopMenu">
     
         <Link to="/" className="desktopMenuListItem">Home</Link>
@@ -33,9 +36,6 @@ const Navbar = () => {
             <div className="dropdownMenu">
 
 
-              {/* <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a> */}
               <Link to="/NotableAlumni" className="dropdownListItem">Notable Alumni</Link>
               <Link to="/AlumniDirectorySignIn" className="dropdownListItem">Alumni Directory</Link>
             </div>
@@ -48,15 +48,12 @@ const Navbar = () => {
             <div className="dropdownMenu">
 
 
-              {/* <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">Facebook</a> */}
+             
               <Link to="/Event1" className="dropdownListItem">SAC Alumni Meet</Link>
               <Link to="/Event2" className="dropdownListItem">CV Writing Session </Link>
               <Link to="/Event3" className="dropdownListItem">Session on  Building a tech startup</Link>
               <Link to="/Event4" className="dropdownListItem">Informal Alumni Student Meet</Link>
-              {/* <Link to="/Event5" className="dropdownListItem">Informal session</Link> */}
-              {/* <Link to="/Event6" className="dropdownListItem">Student Mentorship</Link> */}
+           
             </div>
           )}
         </div>
@@ -72,19 +69,26 @@ const Navbar = () => {
         </div> */}
         {/* <Link to="/Giving Back" className="desktopMenuListItem">Activities</Link> */}
         {/* <Link to="/Giving Back" className="desktopMenuListItem">Giving Back</Link> */}
+        <div className="desktopMenu">
+        {token ? (
+  <>
+    {/* <Link to="#" onClick={() => setToken(false)} className="">Logout</Link> */}
+    <Link to="/profile" className=" profile-icon">
+      <i className="fas fa-user-circle"></i>
+    </Link>
+  </>
+) : (
+  <Link to="/signin" className=" signin-button">Sign In</Link>
+)}
+          </div>
+
+       
 
 
-      {token
-        ?<Link to="#" onClick={()=>setToken(false)} className="desktopMenuListItem">Logout</Link>:<p></p>
-        }
-
-        <div>
-        {token?<p className="desktopMenuListItem">Profile</p>:<p></p>}
-        </div>
+       
 
       </div>
       
-      <img src={logo} alt="logo" className="logo desktopMenu" />
 
       
 

@@ -16,14 +16,14 @@ import AlumniDirectorySignIn from "./pages/AlumniDirectorySignIn"
 import SignIn from "./components/DirectorySignIn/SignIn"
 import PrivateRoute1 from './ProtectedRoute';
 import AlumniDirectory from "./pages/AlumniDirectory"
-
-
+import useStore from './Store';
 function App() {
-  const [token, setToken] = useState(false);
+  // const [token, setToken] = useState(false);
+  const { token, setToken } = useStore();
   return (
 
     <Router>
-      <ScrollToTop/>
+      <ScrollToTop />
 
       
       <Routes>
