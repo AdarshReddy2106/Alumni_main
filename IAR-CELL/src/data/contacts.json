@@ -1,0 +1,56 @@
+{
+    "faculty": [{
+            "name": "Dr. Dinesh Setti",
+            "title": "Assistant Professor",
+            "department": "Mechanical Engineering",
+            "role": "Faculty-in-charge, International and Alumni Relations",
+            "email": "fc_iar@iitkpd.ac.in",
+            "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/Dinesh%20Setti%20%281%29-resized.jpg"
+        },
+        {
+            "name": "Ms. Kavitha G R",
+            "title": "Manager, International Relations",
+            "email": "iar@iitkpd.ac.in",
+            "phone": "+91 9444536574",
+            "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/kavitha-photo-resized_0.jpg"
+        },
+        {
+            "name": "Ms. Nibedita Dey",
+            "title": "Executive, International Relations",
+            "address": "D3 Block, Sahyadri Campus",
+            "phone": "+91 4923226533",
+            "mobile": "+91 7595911769",
+            "email": "ar_office@iitkpd.ac.in",
+            "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/nibe-resized.jpg"
+        }
+    ],
+    "studentHead": [{
+        "name": "Karthekeya D",
+        "title": "Student head",
+        "email": "alumnicell@iitkpd.ac.in",
+        "linkedin": "https://www.linkedin.com/in/srujana-jasmine-komarabathina-4234a423a/",
+        "image": "/assets/club/karthekeya.jpg"
+    }],
+    "coreTeam": [{
+            "name": "Mithil Reddy",
+            "title": "Alumni Relations Lead",
+            "email": "122101006@smail.iitpkd.ac.in",
+            "linkedin": "https://www.linkedin.com/in/aakanksha-buraga-ab593a244/",
+            "image": "/assets/club/mithil.jpg"
+        },
+        {
+            "name": "Sai Kiran",
+            "title": "Technical Lead",
+            "email": "112201044@smail.iitpkd.ac.in",
+            "linkedin": "https://www.linkedin.com/in/ganedi-satya-harika-779668258/",
+            "image": "/assets/club/sai_kiran.jpg"
+        },
+        {
+            "name": "Ashwini Kannan",
+            "title": "Design adn PR Lead",
+            "email": "102201011@smail.iitpkd.ac.in",
+            "linkedin": "https://www.linkedin.com/in/vaibhav-m-252779298",
+            "image": "/assets/club/ashwini.jpg"
+        }
+    ]
+}

@@ -10,8 +10,6 @@ import Event4 from "./pages/Events/Event4"
 import Event5 from "./pages/Events/Event5"
 import Event6 from "./pages/Events/Event6"
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
-import Techclub from "./pages/TechclubMembers"
-import Managementclub from "./pages/ManagementclubMembers"
 import LIfeAtIITPKD from "./pages/LIfeAtIITPKD"
 import NotableAlumni from "./pages/NotableAlumni"
 import AlumniDirectorySignIn from "./pages/AlumniDirectorySignIn"
@@ -38,8 +36,6 @@ function App() {
         <Route path="/Event4" element={<Event4 />} />
         <Route path="/Event5" element={<Event5 />} />
         <Route path="/Event6" element={<Event6 />} />
-        <Route path="/TechClubMembers" element={<Techclub/>}/> 
-        <Route path="/ManagementClubMembers" element={<Managementclub />} />
         <Route path="/LifeAtIITPKD" element={<LIfeAtIITPKD/>}/>
         <Route path="/NotableAlumni" element={<NotableAlumni />} />
         <Route path="/AlumniDirectorySignIn" element={<AlumniDirectorySignIn/>}/>
