@@ -7,3 +7,10 @@ Iar-cell
     removed the iit logo in the navbar and added the profile icon 
     used the zustand to make signin token globally
 }
+
+7-7-25{
+    otp_signin component added(working fully)
+    otp_signin has the email otpcheckiar@gmail.com
+
+    
+}
