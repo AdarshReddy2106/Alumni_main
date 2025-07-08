@@ -18,6 +18,7 @@ import PrivateRoute1 from './ProtectedRoute';
 import AlumniDirectory from "./pages/AlumniDirectory"
 import useStore from './Store';
 import OTPSignIn from './components/Sign_In/Sign_In';
+import AlumniProfile from './components/Alumni_profile/Alumni_profile';
 function App() {
   // const [token, setToken] = useState(false);
   const { token, setToken } = useStore();
@@ -38,6 +39,7 @@ function App() {
         <Route path="/Event5" element={<Event5 />} />
         <Route path="/Event6" element={<Event6 />} />
         <Route path="/LifeAtIITPKD" element={<LIfeAtIITPKD/>}/>
+        <Route path="/profile" element={<AlumniProfile/>}/>
         <Route path="/Otp" element={<OTPSignIn/>}/>
         <Route path="/NotableAlumni" element={<NotableAlumni />} />
         <Route path="/AlumniDirectorySignIn" element={<AlumniDirectorySignIn/>}/>

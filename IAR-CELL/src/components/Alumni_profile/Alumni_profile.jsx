@@ -1,86 +1,67 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Alumni_profile.css';
 
 const AlumniProfile = () => {
+  const [profile, setProfile] = useState(null);
+
   useEffect(() => {
-    import('./profileScript'); // script.js logic modularized
+    fetch('http://localhost:3000/api/profile/1')
+      .then(res => res.json())
+      .then(data => setProfile(data))
+      .catch(err => console.error('Error:', err));
   }, []);
 
+  if (!profile) return <p>Loading profile...</p>;
+
   return (
-    <>
-      <header className="top-header">
-        <div className="header-logos">
-          <img src="iitpkdlogo.jpg" alt="IIT Palakkad Logo" className="logo-effect iit-logo" />
-          <img src="iarcell_logo.png" alt="IAR Cell Logo" className="logo-effect iar-logo" />
-        </div>
-      </header>
-
-      <section className="page-header">
-        <div className="container">
-          <h1 className="page-title">Alumni Profile</h1>
-          <p className="page-subtitle">Connecting Excellence, Building Future</p>
-        </div>
-      </section>
-
-      <main className="container">
-        <div className="profile-card fade-in-up">
-          {/* Avatar and testimonial */}
-          <div className="profile-header">
-            <div className="profile-avatar">
-              <div className="avatar-container">
-                <img src="default_image.jpeg" alt="Profile Avatar" id="profile-avatar-img" className="avatar-img" />
-                <div className="status-badge">Verified</div>
-              </div>
-            </div>
-            <div className="testimonial-block">
-              <div className="testimonial-quote">
-                <span className="quote-mark">"</span>
-                <span id="testimonial-text">
-                  My years at IIT Palakkad were transformative...
-                </span>
-                <span className="quote-mark">"</span>
-              </div>
-              <div className="testimonial-author">— Arjun Sharma, B.Tech CSE, Class of 2022</div>
-            </div>
-          </div>
-
-          {/* Personal & Professional Details */}
-          <div className="profile-content">
-            {/* Reuse structure for details-section */}
-            {/* Action Buttons */}
-            <div className="action-buttons">
-              <button className="btn btn-primary" id="update-btn">
-                <span className="btn-icon">✏️</span> Update Profile
-              </button>
-              <button className="btn btn-secondary" id="verify-btn">
-                <span className="btn-icon">🔍</span> Request Verification
-              </button>
-            </div>
+    <div className="profile-card fade-in-up">
+      <div className="profile-header">
+        <div className="profile-avatar">
+          <div className="avatar-container">
+            <img src={profile.profile_picture_url || '/default_image.jpeg'} alt="Avatar" className="avatar-img" />
+            {profile.is_verified && <div className="status-badge">Verified</div>}
           </div>
         </div>
-      </main>
-
-      {/* Modal for update profile */}
-      <div className="modal-overlay" id="modal-overlay">
-        <div className="modal">
-          <div className="modal-header">
-            <h3 className="modal-title">Update Profile Information</h3>
-            <button className="modal-close" id="modal-close">&times;</button>
+        <div className="testimonial-block">
+          <div className="testimonial-quote">
+            <span className="quote-mark">"</span>
+            <span>{profile.testimonial}</span>
+            <span className="quote-mark">"</span>
           </div>
-          <div className="modal-content">
-            {/* Update form structure */}
-            <form className="update-form" id="update-form">
-              {/* Form Fields */}
-              <div className="form-actions">
-                <button type="button" className="btn btn-outline" id="cancel-btn">Cancel</button>
-                <button type="submit" className="btn btn-primary">Save Changes</button>
-              </div>
-            </form>
-          </div>
+          <div className="testimonial-author">— {profile.full_name}, {profile.degree_program}, Class of {profile.graduation_year}</div>
         </div>
       </div>
-    </>
+
+      <div className="profile-content">
+        <section className="details-section">
+          <h2 className="section-title">Personal Details</h2>
+          <div className="details-grid">
+            <Detail label="Full Name" value={profile.full_name} />
+            <Detail label="Email" value={profile.email} />
+            <Detail label="Department" value={profile.department} />
+            <Detail label="Degree Program" value={profile.degree_program} />
+            <Detail label="Graduation Year" value={profile.graduation_year} />
+          </div>
+        </section>
+
+        <section className="details-section">
+          <h2 className="section-title">Professional Details</h2>
+          <div className="details-grid">
+            <Detail label="Job Title" value={profile.job_title} />
+            <Detail label="Company" value={profile.company} />
+            <Detail label="Location" value={profile.location} />
+          </div>
+        </section>
+      </div>
+    </div>
   );
 };
+
+const Detail = ({ label, value }) => (
+  <div className="detail-item">
+    <label className="detail-label">{label}</label>
+    <span className="detail-value">{value}</span>
+  </div>
+);
 
 export default AlumniProfile;

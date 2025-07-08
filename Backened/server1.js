@@ -12,12 +12,13 @@ app.use(express.json());
 
 // Nodemailer Transporter
 const transporter = nodemailer.createTransport({
-    service: 'gmail', // or use 'smtp.ethereal.email' for dev
+    service: "gmail",
     auth: {
         user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
+        pass: process.env.EMAIL_PASS,
+    },
 });
+
 // MySQL Connection
 const db = mysql.createConnection({
     host: process.env.DB_HOST || "localhost",
@@ -38,25 +39,23 @@ db.connect((err) => {
 const otpStore = {}; // { email: { code: '123456', expiresAt: Date } }
 
 function generateOTP() {
-    return Math.floor(100000 + Math.random() * 900000).toString(); // 6-digit OTP
+    return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-
 // POST /send-otp
-app.post('/send-otp', async(req, res) => {
+app.post("/send-otp", async(req, res) => {
     const { email } = req.body;
-    if (!email) return res.status(400).json({ error: 'Email is required' });
+    if (!email) return res.status(400).json({ error: "Email is required" });
 
     const otp = generateOTP();
     const expiresAt = Date.now() + 5 * 60 * 1000;
 
     otpStore[email] = { code: otp, expiresAt };
 
-    // Email content
     const mailOptions = {
         from: `"IIT Palakkad Portal" <${process.env.EMAIL_USER}>`,
         to: email,
-        subject: 'Your OTP for IIT Palakkad Alumni Portal',
+        subject: "Your OTP for IIT Palakkad Alumni Portal",
         html: `
             <div style="font-family:Arial,sans-serif;padding:20px;">
                 <h2>🔐 Your OTP Code</h2>
@@ -70,17 +69,20 @@ app.post('/send-otp', async(req, res) => {
                 <hr>
                 <p style="font-size:12px;color:gray;">IIT Palakkad Alumni Authentication System</p>
             </div>
-        `
+        `,
     };
 
     try {
         await transporter.sendMail(mailOptions);
-        res.json({ success: true, message: 'OTP sent via email' });
+        res.json({ success: true, message: "OTP sent via email" });
     } catch (err) {
-        console.error('❌ Failed to send email:', err);
-        res.status(500).json({ success: false, message: 'Failed to send OTP email' });
+        console.error("❌ Failed to send email:", err);
+        res
+            .status(500)
+            .json({ success: false, message: "Failed to send OTP email" });
     }
 });
+
 // POST /verify-otp
 app.post("/verify-otp", (req, res) => {
     const { email, otp } = req.body;
@@ -102,11 +104,11 @@ app.post("/verify-otp", (req, res) => {
         return res.status(401).json({ success: false, message: "Invalid OTP" });
     }
 
-    delete otpStore[email]; // OTP used, clean up
+    delete otpStore[email];
     res.json({ success: true, message: "OTP verified successfully" });
 });
 
-// Check if email exists (already in your code)
+// Check if email exists
 app.post("/check-email", (req, res) => {
     const { email } = req.body;
     if (!email) return res.status(400).json({ error: "Email is required" });
@@ -119,6 +121,22 @@ app.post("/check-email", (req, res) => {
         }
 
         res.json({ exists: results.length > 0 });
+    });
+});
+
+// GET /api/profile/:email - fetch user profile by email
+app.get("/api/profile/:email", (req, res) => {
+    const email = req.params.email;
+    const query = "SELECT * FROM alumni_profiles WHERE email = ?";
+    db.query(query, [email], (err, results) => {
+        if (err) {
+            console.error("Error fetching profile:", err);
+            return res.status(500).json({ error: "Failed to fetch profile" });
+        }
+        if (results.length === 0) {
+            return res.status(404).json({ error: "Profile not found" });
+        }
+        res.json(results[0]);
     });
 });
 
