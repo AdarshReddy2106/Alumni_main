@@ -3,7 +3,9 @@ const BASE_URL =
     "http://localhost:3000" :
     "https://your-production-url.com";
 
+
 export function initializeOTPSignIn({
+
     emailInputRef,
     otpInputRef,
     sendOtpBtnRef,
@@ -12,8 +14,14 @@ export function initializeOTPSignIn({
     otpSectionRef,
     successMessageRef,
     formRef,
-    onSuccessRedirect = () => {},
+    setToken,
+    onSuccessRedirect = () => {
+        window.close();
+
+    },
 }) {
+
+
     let currentEmail = "";
     let resendTimer = null;
     let attempts = 0;
@@ -77,6 +85,7 @@ export function initializeOTPSignIn({
             const result = await res.json();
 
             if (result.success) {
+                if (setToken) setToken(true); // ✅ Set login token in Zustand
                 formRef.current.style.display = "none";
                 successMessageRef.current.classList.add("active");
                 let counter = 3;
@@ -84,10 +93,12 @@ export function initializeOTPSignIn({
 
                 const interval = setInterval(() => {
                     counter--;
-                    if (counter > 0) {
+                    if (counter > 1) {
                         successText.textContent = `Redirecting in ${counter} seconds...`;
                     } else {
                         clearInterval(interval);
+                        resetForm();
+
                         onSuccessRedirect();
                     }
                 }, 1000);

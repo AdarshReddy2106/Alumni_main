@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './Sign_In.css';
 import { initializeOTPSignIn } from './otpScript';
 import logo from "../../assets/OTP/IIT_PKD_long logo_RGB.jpg"
-
+import useStore from '../../Store';
 const OTPSignIn = () => {
   const emailInputRef = useRef(null);
   const otpInputRef = useRef(null);
@@ -12,7 +12,9 @@ const OTPSignIn = () => {
   const otpSectionRef = useRef(null);
   const successMessageRef = useRef(null);
   const formRef = useRef(null);
+  const { setToken } = useStore(); // ✅ Get token setter inside the component
 
+  console.log("Token state:", setToken);
   useEffect(() => {
     initializeOTPSignIn({
       emailInputRef,
@@ -23,8 +25,9 @@ const OTPSignIn = () => {
       otpSectionRef,
       successMessageRef,
       formRef,
+      setToken, // ✅ Pass Zustand method here
       onSuccessRedirect: () => {
-        window.location.href = '/profile'; // or useNavigate for React Router
+        // window.location.href = '/profile'; // or useNavigate for React Router
       },
     });
   }, []);
