@@ -3,12 +3,36 @@ const express = require("express");
 const mysql = require("mysql2");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
+
 const app = express();
 const PORT = process.env.PORT || 5175;
+
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+
+// Firebase Admin SDK Initialization for firestore db
+// the configuration file with firebase account credentials in the same directory 
+const admin = require('firebase-admin');
+const serviceAccount = require('./firebase-service-account.json');
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+});
+const firestore = admin.firestore();
+
+
+// Simulate a connection check for the Firestore database
+firestore.collection('students').limit(1).get()
+  .then(() => {
+    console.log('Firebase db connection successful');
+  })
+  .catch((err) => {
+    console.error('Failed to connect to Firestore database:', err);
+  });
+
+
 
 // Nodemailer Transporter
 const transporter = nodemailer.createTransport({
@@ -19,12 +43,15 @@ const transporter = nodemailer.createTransport({
     },
 });
 
+
+
 // MySQL Connection
 const db = mysql.createConnection({
     host: process.env.DB_HOST || "localhost",
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "",
     database: process.env.DB_NAME || "IAR_CELL_MODEL",
+    port: 3306,
 });
 
 db.connect((err) => {
@@ -108,37 +135,126 @@ app.post("/verify-otp", (req, res) => {
     res.json({ success: true, message: "OTP verified successfully" });
 });
 
-// Check if email exists
-app.post("/check-email", (req, res) => {
-    const { email } = req.body;
-    if (!email) return res.status(400).json({ error: "Email is required" });
 
-    const query = "SELECT * FROM email WHERE E_mail = ?";
-    db.query(query, [email], (err, results) => {
-        if (err) {
-            console.error("Error executing query:", err);
-            return res.status(500).json({ error: "Internal Server Error" });
-        }
 
-        res.json({ exists: results.length > 0 });
-    });
+
+app.post('/check-email', async (req, res) => {
+  const { email } = req.body;
+  if (!email) return res.status(400).json({ error:'Email is required' });
+
+  try {
+    const snap = await firestore
+      .collection('students')
+      .where('Email','==',email)
+      .select()              // meta only
+      .limit(1).get();
+    res.json({ exists: !snap.empty });
+  } catch(e){ console.error(e); res.status(500).json({ error:'Internal Server Error'});}
 });
 
-// GET /api/profile/:email - fetch user profile by email
-app.get("/api/profile/:email", (req, res) => {
-    const email = req.params.email;
-    const query = "SELECT * FROM alumni_profiles WHERE email = ?";
-    db.query(query, [email], (err, results) => {
-        if (err) {
-            console.error("Error fetching profile:", err);
-            return res.status(500).json({ error: "Failed to fetch profile" });
-        }
-        if (results.length === 0) {
-            return res.status(404).json({ error: "Profile not found" });
-        }
-        res.json(results[0]);
-    });
+
+
+//api to fetch user profile by email
+app.get('/api/profile/:email', async (req, res) => {
+  const email = req.params.email;
+
+  try {
+    const snapshot = await firestore
+      .collection('students')
+      .where('Email', '==', email)
+      .limit(1)
+      .get();
+
+    if (snapshot.empty) {
+      return res.status(404).json({ error: 'Profile not found' });
+    }
+
+    const doc = snapshot.docs[0];
+    res.json({ id: doc.id, ...doc.data() });
+  } catch (err) {
+    console.error('Error fetching profile:', err);
+    res.status(500).json({ error: 'Failed to fetch profile' });
+  }
 });
+
+
+// cache to store dropdown metadata 
+const metaCache = { years:null, degrees:null, departments:null, ts:0 };
+const META_TTL  = 10 * 60 * 1000; // 10 min
+
+// Function to get dropdown metadata from Firestore (with caching)
+async function getMeta() {
+  if (Date.now() - metaCache.ts < META_TTL && metaCache.years) return metaCache;
+  const doc = await firestore.doc('metadata/dropdowns').get();
+  Object.assign(metaCache, doc.data(), { ts: Date.now() });
+  return metaCache;
+}
+
+
+
+// API to get dropdown options
+app.get('/passout-years', async (_, res) => {
+  try { const { years } = await getMeta();
+        res.json(years.map(y => ({ YearOfPassOut: y }))); }
+  catch (e){ console.error(e); res.status(500).json({ error:'Internal Server Error'});}
+});
+
+app.get('/degrees', async (_, res) => {
+  try { const { degrees } = await getMeta();
+        res.json(degrees.map(d => ({ Degree: d }))); }
+  catch (e){ console.error(e); res.status(500).json({ error:'Internal Server Error'});}
+});
+
+app.get('/departments', async (_, res) => {
+  try { const { departments } = await getMeta();
+        res.json(departments.map(d => ({ Deparment: d }))); }
+  catch (e){ console.error(e); res.status(500).json({ error:'Internal Server Error'});}
+});
+
+
+//API to Get Alumni Data with Filters
+//Filters: name, campusID, yearOfPassOut, degree, department
+app.get('/alumni', async (req, res) => {
+  try {
+    const { name, campusID, yearOfPassOut, degree, department } = req.query;
+
+    let query = firestore.collection('students');
+
+    if (campusID) {
+      query = query.where('CampusID', '==', campusID);
+    }
+    if (yearOfPassOut) {
+      query = query.where('YearOfPassOut', '==', yearOfPassOut);
+    }
+    if (degree) {
+      query = query.where('Degree', '==', degree);
+    }
+    if (department) {
+      query = query.where('Deparment', '==', department);
+    }
+
+    const snapshot = await query.get();
+
+    let results = [];
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      if (name) {
+        if (data.Name?.toLowerCase().includes(name.toLowerCase())) {
+          results.push({ id: doc.id, ...data });
+        }
+      } else {
+        results.push({ id: doc.id, ...data });
+      }
+    });
+    res.json(results);
+  } catch (error) {
+    console.error('Error fetching alumni:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 
 // Start server
 app.listen(PORT, () => {
