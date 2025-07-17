@@ -4,89 +4,132 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #FCF9F9;
 }
 
 .NALwrapper {
+    width: 100%;
     max-width: 75rem;
-    padding: clamp(0px, 3vw, 50px);
-    padding-left: clamp(0px, 8vw, 100px);
-    padding-right: clamp(0px, 8vw, 100px);
-    background-color: #FCF9F9;
+    padding: 2rem clamp(1rem, 5vw, 3rem);
+    box-sizing: border-box;
 }
 
 #NALtitle {
     color: rgba(255, 140, 0, 0.796);
     text-align: center;
+    margin-bottom: 2rem;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
 
-.ImageSectionLink {
+.NALImageSectionLink {
     color: #000;
+    text-decoration: none;
 }
 
 .NALImageSection {
     display: flex;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    max-height: 20rem;
-    max-width: 70rem;
+    flex-direction: column;
+    margin: 2rem 0;
     border-radius: 1rem;
-    box-shadow: 0 0.3rem 0.6rem 0 gray;
-    transition: 0.2s;
+    box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    background-color: white; 
+}
+
+@media (min-width: 768px) {
+    .NALImageSection {
+        flex-direction: row;
+        max-height: 18rem; 
+    }
 }
 
 .NALImageSection:hover {
-    background-color: rgba(255, 166, 0, 0.778);
-    color: white;
-    box-shadow: 0 0.6rem 1.2rem 0 rgb(25, 25, 25);
+    transform: translateY(-5px);
+    box-shadow: 0 0.6rem 1.2rem 0 rgba(0, 0, 0, 0.3);
 }
 
 .NALImage {
-    width: 40%;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
+    width: 100%;
+    height: 15rem; 
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .NALImage {
+        width: 35%; 
+        height: 18rem; 
+        max-height: none;
+    }
 }
 
 .NALText {
-    width: 60%;
+    padding: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    color: #000; 
+}
+
+@media (min-width: 768px) {
+    .NALText {
+        width: 65%; 
+        padding: 1rem 2rem;
+    }
 }
 
 .NALText p {
-    font-size: 1.25rem;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    margin: 0.5rem 0;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 6;
-    line-clamp: 6;
     -webkit-box-orient: vertical;
+    color: #000; 
 }
 
 .NALpara {
-    height: 85%;
-    padding: 2rem;
-    padding-top: 1rem;
+    padding: 0.5rem 0;
+    color: #000; 
+}
+
+@media (min-width: 768px) {
+    .NALpara {
+        height: 80%;
+    }
 }
 
 .NALpara h3 {
     text-align: center;
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    margin: 0.5rem 0;
     overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    word-break: break-all;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #000;
 }
 
 .NALLink {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 0.5rem 0;
+}
+
+.NALLink a {
+    transition: transform 0.2s;
+}
+
+.NALLink a:hover {
+    transform: scale(1.1);
 }
 
 .NALLink img {
-    height: 2rem;
+    height: 1.8rem;
     width: auto;
 }
 
-
-/* .NALLink p{
-    font-weight: bold;
-    font-size: 1.15rem;
-} */
+@media (min-width: 768px) {
+    .NALLink img {
+        height: 2rem;
+    }
+}
