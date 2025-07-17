@@ -19,6 +19,8 @@ import AlumniDirectory from "./pages/AlumniDirectory"
 import useStore from './Store';
 import OTPSignIn from './components/Sign_In/Sign_In';
 import AlumniProfile from './components/Alumni_profile/Alumni_profile';
+import SignUpPage from './components/Signup/signup';
+
 function App() {
   // const [token, setToken] = useState(false);
   const { token, setToken } = useStore();
@@ -44,6 +46,7 @@ function App() {
         <Route path="/NotableAlumni" element={<NotableAlumni />} />
         <Route path="/AlumniDirectorySignIn" element={<AlumniDirectorySignIn/>}/>
         <Route path="/SignIn" element={<SignIn setToken={setToken} />} />
+        <Route path="/SignUp" element={<SignUpPage />} />
 
         <Route element={<PrivateRoute1 token={token}/>}> 
             <Route path="/AlumniDirectory" element={<AlumniDirectory/>}/>    
