@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Add this import
 import './signup.css';
 
 const SignUpPage = () => {
@@ -20,6 +21,8 @@ const SignUpPage = () => {
     designation: '',
     awards: '',
   });
+
+  const navigate = useNavigate(); // Add this line
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -43,6 +46,7 @@ const SignUpPage = () => {
 
     console.log('Submitted:', formData);
     alert('Submitted successfully (dummy response)');
+    navigate(-1); // Navigate to previous page
   };
 
   return (

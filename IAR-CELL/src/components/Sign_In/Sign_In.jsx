@@ -79,6 +79,10 @@ const OTPSignIn = () => {
           <p>Welcome to IIT Palakkad Alumni Portal. You will be redirected shortly.</p>
         </div>
 
+        <div>
+          <p>If you don't have an account <a href="/Signup" className='link-btn'>SignUp</a></p>
+        </div>
+
         <div className="footer-info">
           <p>Indian Institute of Technology Palakkad</p>
           <p className="tagline">Nurturing Minds For a Better World</p>
