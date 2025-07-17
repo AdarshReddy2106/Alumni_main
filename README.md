@@ -16,3 +16,11 @@ Iar-cell
 8-7{
     https://qmpwq7dv-5173.inc1.devtunnels.ms/LifeAtIITPKD
 }
+
+17-7{
+
+    sign up is done .
+    alumni dash board is done.
+    alumni directory is done.
+}
+
