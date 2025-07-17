@@ -25,12 +25,12 @@ const firestore = admin.firestore();
 
 // Simulate a connection check for the Firestore database
 firestore.collection('students').limit(1).get()
-  .then(() => {
-    console.log('Firebase db connection successful');
-  })
-  .catch((err) => {
-    console.error('Failed to connect to Firestore database:', err);
-  });
+    .then(() => {
+        console.log('Firebase db connection successful');
+    })
+    .catch((err) => {
+        console.error('Failed to connect to Firestore database:', err);
+    });
 
 
 
@@ -138,120 +138,135 @@ app.post("/verify-otp", (req, res) => {
 
 
 
-app.post('/check-email', async (req, res) => {
-  const { email } = req.body;
-  if (!email) return res.status(400).json({ error:'Email is required' });
+app.post('/check-email', async(req, res) => {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email is required' });
 
-  try {
-    const snap = await firestore
-      .collection('students')
-      .where('Email','==',email)
-      .select()              // meta only
-      .limit(1).get();
-    res.json({ exists: !snap.empty });
-  } catch(e){ console.error(e); res.status(500).json({ error:'Internal Server Error'});}
+    try {
+        const snap = await firestore
+            .collection('students')
+            .where('Email', '==', email)
+            .select() // meta only
+            .limit(1).get();
+        res.json({ exists: !snap.empty });
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 
 
 //api to fetch user profile by email
-app.get('/api/profile/:email', async (req, res) => {
-  const email = req.params.email;
+app.get('/api/profile/:email', async(req, res) => {
+    const email = req.params.email;
 
-  try {
-    const snapshot = await firestore
-      .collection('students')
-      .where('Email', '==', email)
-      .limit(1)
-      .get();
+    try {
+        const snapshot = await firestore
+            .collection('students')
+            .where('Email', '==', email)
+            .limit(1)
+            .get();
 
-    if (snapshot.empty) {
-      return res.status(404).json({ error: 'Profile not found' });
+        if (snapshot.empty) {
+            return res.status(404).json({ error: 'Profile not found' });
+        }
+
+        const doc = snapshot.docs[0];
+        res.json({ id: doc.id, ...doc.data() });
+    } catch (err) {
+        console.error('Error fetching profile:', err);
+        res.status(500).json({ error: 'Failed to fetch profile' });
     }
-
-    const doc = snapshot.docs[0];
-    res.json({ id: doc.id, ...doc.data() });
-  } catch (err) {
-    console.error('Error fetching profile:', err);
-    res.status(500).json({ error: 'Failed to fetch profile' });
-  }
 });
 
 
 // cache to store dropdown metadata 
-const metaCache = { years:null, degrees:null, departments:null, ts:0 };
-const META_TTL  = 10 * 60 * 1000; // 10 min
+const metaCache = { years: null, degrees: null, departments: null, ts: 0 };
+const META_TTL = 10 * 60 * 1000; // 10 min
 
 // Function to get dropdown metadata from Firestore (with caching)
 async function getMeta() {
-  if (Date.now() - metaCache.ts < META_TTL && metaCache.years) return metaCache;
-  const doc = await firestore.doc('metadata/dropdowns').get();
-  Object.assign(metaCache, doc.data(), { ts: Date.now() });
-  return metaCache;
+    if (Date.now() - metaCache.ts < META_TTL && metaCache.years) return metaCache;
+    const doc = await firestore.doc('metadata/dropdowns').get();
+    Object.assign(metaCache, doc.data(), { ts: Date.now() });
+    return metaCache;
 }
 
 
 
 // API to get dropdown options
-app.get('/passout-years', async (_, res) => {
-  try { const { years } = await getMeta();
-        res.json(years.map(y => ({ YearOfPassOut: y }))); }
-  catch (e){ console.error(e); res.status(500).json({ error:'Internal Server Error'});}
+app.get('/passout-years', async(_, res) => {
+    try {
+        const { years } = await getMeta();
+        res.json(years.map(y => ({ YearOfPassOut: y })));
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
-app.get('/degrees', async (_, res) => {
-  try { const { degrees } = await getMeta();
-        res.json(degrees.map(d => ({ Degree: d }))); }
-  catch (e){ console.error(e); res.status(500).json({ error:'Internal Server Error'});}
+app.get('/degrees', async(_, res) => {
+    try {
+        const { degrees } = await getMeta();
+        res.json(degrees.map(d => ({ Degree: d })));
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
-app.get('/departments', async (_, res) => {
-  try { const { departments } = await getMeta();
-        res.json(departments.map(d => ({ Deparment: d }))); }
-  catch (e){ console.error(e); res.status(500).json({ error:'Internal Server Error'});}
+app.get('/departments', async(_, res) => {
+    try {
+        const { departments } = await getMeta();
+        res.json(departments.map(d => ({ Deparment: d })));
+    } catch (e) {
+        console.error(e);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 
 //API to Get Alumni Data with Filters
 //Filters: name, campusID, yearOfPassOut, degree, department
-app.get('/alumni', async (req, res) => {
-  try {
-    const { name, campusID, yearOfPassOut, degree, department } = req.query;
+app.get('/alumni', async(req, res) => {
+    try {
+        const { name, campusID, yearOfPassOut, degree, department } = req.query;
 
-    let query = firestore.collection('students');
+        let query = firestore.collection('students');
 
-    if (campusID) {
-      query = query.where('CampusID', '==', campusID);
-    }
-    if (yearOfPassOut) {
-      query = query.where('YearOfPassOut', '==', yearOfPassOut);
-    }
-    if (degree) {
-      query = query.where('Degree', '==', degree);
-    }
-    if (department) {
-      query = query.where('Deparment', '==', department);
-    }
-
-    const snapshot = await query.get();
-
-    let results = [];
-
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      if (name) {
-        if (data.Name?.toLowerCase().includes(name.toLowerCase())) {
-          results.push({ id: doc.id, ...data });
+        if (campusID) {
+            query = query.where('CampusID', '==', campusID);
         }
-      } else {
-        results.push({ id: doc.id, ...data });
-      }
-    });
-    res.json(results);
-  } catch (error) {
-    console.error('Error fetching alumni:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+        if (yearOfPassOut) {
+            query = query.where('YearOfPassOut', '==', yearOfPassOut);
+        }
+        if (degree) {
+            query = query.where('Degree', '==', degree);
+        }
+        if (department) {
+            query = query.where('Deparment', '==', department);
+        }
+
+        const snapshot = await query.get();
+
+        let results = [];
+
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            if (name) {
+                if (data.Name && data.Name.toLowerCase().includes(name.toLowerCase())) {
+                    results.push({ id: doc.id, ...data });
+                }
+            } else {
+                results.push({ id: doc.id, ...data });
+            }
+        });
+        res.json(results);
+    } catch (error) {
+        console.error('Error fetching alumni:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 
