@@ -81,7 +81,7 @@ const OTPSignIn = () => {
         </div>
 
         <div>
-          <p>If you don't have an account <Link href="/Signup" className='link-btn'>SignUp</Link></p>
+          <p>If you don't have an account <Link to="/Signup" className='link-btn'>SignUp</Link></p>
         </div>
 
         <div className="footer-info">
