@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React, { useEffect, useRef } from 'react';
 import './Sign_In.css';
 import { initializeOTPSignIn } from './otpScript';
@@ -80,7 +81,7 @@ const OTPSignIn = () => {
         </div>
 
         <div>
-          <p>If you don't have an account <a href="/Signup" className='link-btn'>SignUp</a></p>
+          <p>If you don't have an account <Link href="/Signup" className='link-btn'>SignUp</Link></p>
         </div>
 
         <div className="footer-info">
