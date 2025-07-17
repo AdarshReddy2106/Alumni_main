@@ -24,12 +24,12 @@ app.use(express.json());
 
 // Simulate a connection check for the Firestore database
 firestore.collection('students').limit(1).get()
-  .then(() => {
-    console.log('Firebase db connection successful');
-  })
-  .catch((err) => {
-    console.error('Failed to connect to Firestore database:', err);
-  });
+    .then(() => {
+        console.log('Firebase db connection successful');
+    })
+    .catch((err) => {
+        console.error('Failed to connect to Firestore database:', err);
+    });
 
 // MySQL Connection
 const db = mysql.createConnection({
@@ -37,7 +37,7 @@ const db = mysql.createConnection({
     user: process.env.DB_USER || 'root',
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'IAR_CELL_MODEL',
-    port:3306,
+    port: 3306,
 });
 
 db.connect((err) => {
@@ -70,109 +70,109 @@ app.post('/check-email', (req, res) => {
 // API to Get unique Passout Years, Degrees, and Departments
 // to populate the filter dropdowns ui
 
-app.get('/passout-years', async (req, res) => {
-  try {
-    const snapshot = await firestore.collection('students').get();
-    const yearsSet = new Set();
+app.get('/passout-years', async(req, res) => {
+    try {
+        const snapshot = await firestore.collection('students').get();
+        const yearsSet = new Set();
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      if (data.YearOfPassOut) {
-        yearsSet.add(data.YearOfPassOut);
-      }
-    });
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            if (data.YearOfPassOut) {
+                yearsSet.add(data.YearOfPassOut);
+            }
+        });
 
-    const years = Array.from(yearsSet).sort((a, b) => b - a); // Descending
-    res.json(years.map((y) => ({ YearOfPassOut: y })));
-  } catch (error) {
-    console.error('Error fetching passout years:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+        const years = Array.from(yearsSet).sort((a, b) => b - a); // Descending
+        res.json(years.map((y) => ({ YearOfPassOut: y })));
+    } catch (error) {
+        console.error('Error fetching passout years:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 
-app.get('/degrees', async (req, res) => {
-  try {
-    const snapshot = await firestore.collection('students').get();
-    const degreeSet = new Set();
+app.get('/degrees', async(req, res) => {
+    try {
+        const snapshot = await firestore.collection('students').get();
+        const degreeSet = new Set();
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      if (data.Degree) {
-        degreeSet.add(data.Degree);
-      }
-    });
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            if (data.Degree) {
+                degreeSet.add(data.Degree);
+            }
+        });
 
-    const degrees = Array.from(degreeSet).sort();
-    res.json(degrees.map((d) => ({ Degree: d })));
-  } catch (error) {
-    console.error('Error fetching degrees:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+        const degrees = Array.from(degreeSet).sort();
+        res.json(degrees.map((d) => ({ Degree: d })));
+    } catch (error) {
+        console.error('Error fetching degrees:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
-app.get('/departments', async (req, res) => {
-  try {
-    const snapshot = await firestore.collection('students').get();
-    const deptSet = new Set();
+app.get('/departments', async(req, res) => {
+    try {
+        const snapshot = await firestore.collection('students').get();
+        const deptSet = new Set();
 
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      if (data.Deparment) {
-        deptSet.add(data.Deparment);
-      }
-    });
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            if (data.Deparment) {
+                deptSet.add(data.Deparment);
+            }
+        });
 
-    const departments = Array.from(deptSet).sort();
-    res.json(departments.map((d) => ({ Deparment: d })));
-  } catch (error) {
-    console.error('Error fetching departments:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+        const departments = Array.from(deptSet).sort();
+        res.json(departments.map((d) => ({ Deparment: d })));
+    } catch (error) {
+        console.error('Error fetching departments:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 
 // API to Get Alumni Data with Filters
 // Filters: name, campusID, yearOfPassOut, degree, department
-app.get('/alumni', async (req, res) => {
-  try {
-    const { name, campusID, yearOfPassOut, degree, department } = req.query;
+app.get('/alumni', async(req, res) => {
+    try {
+        const { name, campusID, yearOfPassOut, degree, department } = req.query;
 
-    let query = firestore.collection('students');
+        let query = firestore.collection('students');
 
-    if (campusID) {
-      query = query.where('CampusID', '==', campusID);
-    }
-    if (yearOfPassOut) {
-      query = query.where('YearOfPassOut', '==', yearOfPassOut);
-    }
-    if (degree) {
-      query = query.where('Degree', '==', degree);
-    }
-    if (department) {
-      query = query.where('Deparment', '==', department);
-    }
-
-    const snapshot = await query.get();
-
-    let results = [];
-
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      if (name) {
-        if (data.Name?.toLowerCase().includes(name.toLowerCase())) {
-          results.push({ id: doc.id, ...data });
+        if (campusID) {
+            query = query.where('CampusID', '==', campusID);
         }
-      } else {
-        results.push({ id: doc.id, ...data });
-      }
-    });
+        if (yearOfPassOut) {
+            query = query.where('YearOfPassOut', '==', yearOfPassOut);
+        }
+        if (degree) {
+            query = query.where('Degree', '==', degree);
+        }
+        if (department) {
+            query = query.where('Deparment', '==', department);
+        }
 
-    res.json(results);
-  } catch (error) {
-    console.error('Error fetching alumni:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+        const snapshot = await query.get();
+
+        let results = [];
+
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            if (name) {
+                if (data.Name && data.Name.toLowerCase().includes(name.toLowerCase())) {
+                    results.push({ id: doc.id, ...data });
+                }
+            } else {
+                results.push({ id: doc.id, ...data });
+            }
+        });
+
+        res.json(results);
+    } catch (error) {
+        console.error('Error fetching alumni:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 

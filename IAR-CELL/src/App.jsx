@@ -44,6 +44,7 @@ function App() {
         <Route path="/NotableAlumni" element={<NotableAlumni />} />
         <Route path="/AlumniDirectorySignIn" element={<AlumniDirectorySignIn/>}/>
         <Route path="/SignIn" element={<SignIn setToken={setToken} />} />
+
         <Route element={<PrivateRoute1 token={token}/>}> 
             <Route path="/AlumniDirectory" element={<AlumniDirectory/>}/>    
         </Route>
