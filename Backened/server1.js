@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const mysql = require("mysql2");
+// const mysql = require("mysql2");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 
@@ -45,22 +45,22 @@ const transporter = nodemailer.createTransport({
 
 
 
-// MySQL Connection
-const db = mysql.createConnection({
-    host: process.env.DB_HOST || "localhost",
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "",
-    database: process.env.DB_NAME || "IAR_CELL_MODEL",
-    port: 3306,
-});
+// // MySQL Connection
+// const db = mysql.createConnection({
+//     host: process.env.DB_HOST || "localhost",
+//     user: process.env.DB_USER || "root",
+//     password: process.env.DB_PASSWORD || "",
+//     database: process.env.DB_NAME || "IAR_CELL_MODEL",
+//     port: 3306,
+// });
 
-db.connect((err) => {
-    if (err) {
-        console.error("Database connection failed:", err);
-        return;
-    }
-    console.log("✅ Connected to MySQL Database");
-});
+// db.connect((err) => {
+//     if (err) {
+//         console.error("Database connection failed:", err);
+//         return;
+//     }
+//     console.log("✅ Connected to MySQL Database");
+// });
 
 // OTP store (in-memory)
 const otpStore = {}; // { email: { code: '123456', expiresAt: Date } }
