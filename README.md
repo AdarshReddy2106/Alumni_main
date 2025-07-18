@@ -24,3 +24,7 @@ Iar-cell
     alumni directory is done.
 }
 
+18{
+    Backend is deployed in the render with email databaseIAR
+    new github was created and the alumni repo was fork into it
+}
