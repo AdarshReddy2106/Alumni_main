@@ -14,33 +14,29 @@ import Main3 from "../components/Main/Main3"
 
 const Home = () => {
     const [imgcount, setimgcount] = useState(0)
-    const [playstatus, setplaystatus] = useState(true)
+  const [playstatus, setplaystatus] = useState(true)
+  
     useEffect(() => {
         const interval = setInterval(() => {
           setimgcount((count) => (count === 4 ? 0 : count + 1));
         }, 3000);
+      
         return () => clearInterval(interval); // Clear interval on component unmount
-      }, [setimgcount]);
+    }, [setimgcount]);
+  
   return (
       <div>
-         
           <Navbar />
-          
-
           <Image_swap
               setplaystatus={setplaystatus}
               playstatus={playstatus}
               imgcount={imgcount}
-              setimgcount={setimgcount}
-          />
-
-          
-          
-            <Main1 />
-      <Main2 />
-      <Main3/>
-      <ReachUs/>
-             <Footer/> 
+              setimgcount={setimgcount}/>
+          <Main1 />
+          <Main2 />
+          <Main3/>
+          <ReachUs/>
+          <Footer/> 
       </div>
   )
 }
