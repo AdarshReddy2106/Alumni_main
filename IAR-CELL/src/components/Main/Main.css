@@ -1,93 +1,122 @@
 .refer1 {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     margin: 2rem auto;
-    /* max-width: 75rem; */
-    align-items: center;
-    flex-direction: column;
+    padding: 1rem;
     background: rgb(252, 249, 249);
-    justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .name {
     display: flex;
     align-items: center;
+    justify-content: center;
     color: rgb(239, 159, 32);
     max-width: 60rem;
-    justify-content: center;
-    margin: 2rem 1rem;
+    width: 100%;
+    margin: 2rem 0;
     flex-wrap: wrap;
-    /* Allow elements to wrap on small screens */
+    gap: 1.5rem;
 }
 
 .DEAN {
     object-fit: cover;
     height: 15rem;
     width: 13rem;
-    margin-right: 1rem;
-    margin-top: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 .length {
     width: 100%;
-    /* Make the hr element take full width */
     max-width: 40rem;
-    /* Constrain the width on larger screens */
+    margin: 0.5rem auto;
 }
 
 .DirectorMessage {
     text-align: center;
-    margin-right: 0;
-    margin-left: 0;
     flex: 1;
-    /* Allow the div to grow and shrink as needed */
+    min-width: 250px;
+    padding: 0 1rem;
 }
 
 .headfont {
-    font-size: x-large;
-    font-weight: 500;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
 }
 
 .namefont {
-    font-size: large;
+    font-size: 1.2rem;
+    /* color: #333; */
+    color: rgb(239, 159, 32);
+}
+
+.profession {
+    font-style: italic;
+    font-size: 1rem;
+    color: #777;
 }
 
 .message {
-    margin: 2rem 1rem;
     max-width: 60rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
 }
 
 .paragraph {
-    margin: 0.75rem 0;
-    font-size: medium;
+    margin: 1rem 0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    text-align: justify;
 }
 
-@media screen and (max-width: 700px) {
+
+/* Tablet */
+
+@media screen and (max-width: 768px) {
     .name {
         flex-direction: column;
-        align-items: center;
-        margin: 1rem 0;
+        gap: 1rem;
+        margin: 1.5rem 0;
     }
+    .DEAN {
+        height: 10rem;
+        width: 10rem;
+    }
+    .headfont {
+        font-size: 1.4rem;
+    }
+    .namefont {
+        font-size: 1rem;
+    }
+    .message {
+        padding: 1rem;
+    }
+    .paragraph {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}
+
+
+/* Mobile */
+
+@media screen and (max-width: 480px) {
     .DEAN {
         height: 7rem;
         width: 7rem;
-        margin: 1rem 0;
-    }
-    .DirectorMessage {
-        margin: 0 1rem;
     }
     .headfont {
-        font-size: medium;
-        margin: 0.2rem 0;
+        font-size: 1.2rem;
     }
     .namefont {
-        font-size: small;
-    }
-    .message {
-        margin: 0.25rem 0rem;
+        font-size: 0.9rem;
     }
     .paragraph {
-        margin: 0.5rem 0;
-        font-size: small;
+        font-size: 0.85rem;
     }
 }

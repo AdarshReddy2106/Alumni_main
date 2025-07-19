@@ -1,14 +1,11 @@
 // import React from 'react';
-
 import Footer from "../components/Footer/Footer"
-import Main1 from "../components/Main/Main1"
-import Main2 from "../components/Main/Main2"
 import Navbar from "../components/Navbar/Navbar"
 import Image_swap from "../components/Image_swap/Image_swap"
 import { useState } from "react"
 import { useEffect } from 'react';
 import ReachUs from "../components/ReachUs/ReachUs"
-import Main3 from "../components/Main/Main3"
+import Main from "../components/Main/Main"
 
 // import Swap from "../components/Image_swap/Swap"
 
@@ -31,10 +28,8 @@ const Home = () => {
               setplaystatus={setplaystatus}
               playstatus={playstatus}
               imgcount={imgcount}
-              setimgcount={setimgcount}/>
-          <Main1 />
-          <Main2 />
-          <Main3/>
+        setimgcount={setimgcount} />
+          <Main/>
           <ReachUs/>
           <Footer/> 
       </div>
