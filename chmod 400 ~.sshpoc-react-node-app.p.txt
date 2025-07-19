@@ -1,7 +1,0 @@
-chmod 400 ~/.ssh/iar_cell_private_key.pem
-eval $(ssh-agent -s)
- ssh-add ~/.ssh/iar_cell_private_key.pem
-ssh -A ec2-user@ec2-54-89-149-182.compute-1.amazonaws.com
-
-
-personal git token : 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
