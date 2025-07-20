@@ -49,7 +49,7 @@ function App() {
         <Route path="/AlumniDirectorySignIn" element={<AlumniDirectorySignIn/>}/>
         <Route path="/SignIn" element={<SignIn setToken={setToken} />} />
         <Route path="/SignUp" element={<SignUpPage />} />
-
+           
         <Route element={<PrivateRoute1 token={token}/>}> 
             <Route path="/AlumniDirectory" element={<AlumniDirectory/>}/>    
         </Route>
