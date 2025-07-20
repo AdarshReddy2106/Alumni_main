@@ -28,3 +28,9 @@ Iar-cell
     Backend is deployed in the render with email databaseIAR
     new github was created and the alumni repo was fork into it
 }
+
+20{
+    admin page is added 
+    alumni directory is updated 
+    otp page is finalized 
+}
