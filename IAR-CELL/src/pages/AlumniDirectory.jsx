@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
+import "./AlumniDirectory.css";
 
 const AlumniDirectory = () => {
   const [filters, setFilters] = useState({
@@ -16,68 +17,66 @@ const AlumniDirectory = () => {
   const [departments, setDepartments] = useState([]);
   const [degrees, setDegrees] = useState([]);
 
-
   const BASE_URL = "http://localhost:3000";
 
-useEffect(() => {
-  fetch(`${BASE_URL}/passout-years`)
-    .then((res) => res.json())
-    .then((data) => setYears(data))
-    .catch((err) => console.error("Error fetching years:", err));
+  useEffect(() => {
+    fetch(`${BASE_URL}/passout-years`)
+      .then((res) => res.json())
+      .then((data) => setYears(data))
+      .catch((err) => console.error("Error fetching years:", err));
 
-  fetch(`${BASE_URL}/departments`)
-    .then((res) => res.json())
-    .then((data) => setDepartments(data))
-    .catch((err) => console.error("Error fetching departments:", err));
+    fetch(`${BASE_URL}/departments`)
+      .then((res) => res.json())
+      .then((data) => setDepartments(data))
+      .catch((err) => console.error("Error fetching departments:", err));
 
-  fetch(`${BASE_URL}/degrees`)
-    .then((res) => res.json())
-    .then((data) => setDegrees(data))
-    .catch((err) => console.error("Error fetching degrees:", err));
-}, []);
+    fetch(`${BASE_URL}/degrees`)
+      .then((res) => res.json())
+      .then((data) => setDegrees(data))
+      .catch((err) => console.error("Error fetching degrees:", err));
+  }, []);
 
-
-const handleSearch = () => {
-  fetch(`${BASE_URL}/alumni?${new URLSearchParams(filters).toString()}`)
-    .then((res) => res.json())
-    .then((data) => {
-      console.log("Fetched alumni data:", data); // 🔹 Debugging
-      setAlumniData(Array.isArray(data) ? data : []);
-    })
-    .catch((err) => {
-      console.error("Error fetching alumni:", err);
-      setAlumniData([]);
-    });
-};
-
+  const handleSearch = () => {
+    fetch(`${BASE_URL}/alumni?${new URLSearchParams(filters).toString()}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Fetched alumni data:", data);
+        setAlumniData(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => {
+        console.error("Error fetching alumni:", err);
+        setAlumniData([]);
+      });
+  };
 
   return (
-    <div>
+    <div className="alumni-page">
       <Navbar />
       <div className="filter-container">
-        
         <select
           value={filters.yearOfPassOut}
           onChange={(e) => setFilters({ ...filters, yearOfPassOut: e.target.value })}
         >
           <option value="">Select Year</option>
           {years.map((item) => (
-          <option key={item.YearOfPassOut} value={item.YearOfPassOut}>
-            {item.YearOfPassOut}
-              </option>
-            ))}
+            <option key={item.YearOfPassOut} value={item.YearOfPassOut}>
+              {item.YearOfPassOut}
+            </option>
+          ))}
         </select>
+
         <select
           value={filters.department}
           onChange={(e) => setFilters({ ...filters, department: e.target.value })}
         >
           <option value="">Select Department</option>
           {departments.map((item) => (
-              <option key={item.Deparment} value={item.Deparment}>
-                {item.Deparment}
-              </option>
-            ))}
+            <option key={item.Deparment} value={item.Deparment}>
+              {item.Deparment}
+            </option>
+          ))}
         </select>
+
         <select
           value={filters.degree}
           onChange={(e) => setFilters({ ...filters, degree: e.target.value })}
@@ -89,6 +88,7 @@ const handleSearch = () => {
             </option>
           ))}
         </select>
+
         <input
           type="text"
           placeholder="Name"
@@ -103,23 +103,33 @@ const handleSearch = () => {
         />
         <button onClick={handleSearch}>Search</button>
       </div>
+
       <div className="alumni-list">
         {alumniData.map((alumni, index) => (
           <div key={index} className="alumni-card">
-            <h3>{alumni.Name}</h3>
-            {/* <p>Campus ID: {alumni.CampusID}</p> */}
-            <p>Email: {alumni.Email}</p>
-            {/* <p>Department: {alumni.Deparment}</p> */}
-            {/* <p>Degree: {alumni.Degree}</p> */}
-            {/* <p>Year of Passout: {alumni.YearOfPassOut}</p> */}
-            <p>Linkdin: {alumni.LikedlnProfile}</p>
-            <p>Current_Location: {alumni.Current_Location}</p>
+        <h3>{alumni.Name}</h3>
+        <p><strong>Email:</strong> {alumni.Email}</p>
 
-            <p>Organisation: {alumni.Organisation}</p>
-            <p>Designation: {alumni.Designation}</p>
-            <p>Awards: {alumni.Awards}</p>
+        {alumni.LikedlnProfile && (
+          <p>
+            <strong>LinkedIn:</strong>{" "}
+            <a
+              href={alumni.LikedlnProfile}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="linkedin-link"
+            >
+              {alumni.LikedlnProfile}
+            </a>
+          </p>
+        )}
 
-          </div>
+        <p><strong>Current Location:</strong> {alumni.Current_Location}</p>
+        <p><strong>Organisation:</strong> {alumni.Organisation}</p>
+        <p><strong>Designation:</strong> {alumni.Designation}</p>
+        <p><strong>Awards:</strong> {alumni.Awards}</p>
+      </div>
+
         ))}
       </div>
       <Footer />
