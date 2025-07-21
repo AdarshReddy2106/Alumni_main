@@ -1,0 +1,49 @@
+:root {
+  --primary-color: #f4a300;
+  --bg-color: #fff8f0;
+}
+
+.alumni-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px; 
+  margin-top: 30px;
+  padding: 0 20px 40px;
+}
+
+.alumni-card {
+  background-color: var(--bg-color);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.alumni-card:hover {
+  transform: translateY(-4px);
+}
+
+.alumni-card h3 {
+  margin-top: 0;
+  color: var(--primary-color);
+}
+
+.alumni-card p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.linkedin-link {
+  color: var(--primary-color);
+  text-decoration: underline;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}

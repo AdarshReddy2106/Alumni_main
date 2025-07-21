@@ -1,0 +1,98 @@
+/* Container */
+
+.alumni-signin-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+    /* Light background for official feel */
+}
+
+
+/* Divider */
+
+.alumni-divider {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #0975a8, transparent);
+    /* Official gradient divider */
+    margin: 0;
+}
+
+
+/* Content */
+
+.alumni-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5rem auto;
+    max-width: 600px;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+
+/* Messages */
+
+.alumni-message {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+
+/* Button */
+
+.alumni-signin-btn {
+    padding: 0.8rem 2.5rem;
+    background-color: #0975a8;
+    border-radius: 6px;
+    color: white;
+    margin: 1rem 0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: 1px solid #075e8a;
+    /* Added subtle border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+.alumni-signin-btn:hover {
+    background-color: #075e8a;
+    transform: translateY(-1px);
+}
+
+
+/* Subtitle */
+
+.alumni-subtitle {
+    font-size: 1.1rem;
+    color: #0975a8;
+    margin: 1.5rem 0 0.5rem;
+    font-weight: 500;
+}
+
+
+/* Description */
+
+.alumni-description {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.6;
+    max-width: 500px;
+}
+
+
+/* Link */
+
+.alumni-link {
+    color: #0975a8;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dotted #0975a8;
+    /* Subtle underline */
+}
