@@ -34,3 +34,8 @@ Iar-cell
     alumni directory is updated 
     otp page is finalized 
 }
+
+21{
+    reach us section is modified
+    alumni directory sign in page is updated
+}
