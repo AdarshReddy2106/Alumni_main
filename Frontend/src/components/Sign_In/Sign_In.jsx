@@ -34,6 +34,7 @@ const OTPSignIn = () => {
   }, []);
 
   return (
+    <div className="otp-signin-page">
     <div className="container">
       <div className="signin-card">
         <div className="header">
@@ -90,7 +91,7 @@ const OTPSignIn = () => {
           <p className="tagline">Nurturing Minds For a Better World</p>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 
