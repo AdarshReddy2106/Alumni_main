@@ -5,7 +5,7 @@
     margin: 1rem auto;
     padding: 10px 20px;
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f4f85a;
+    /* background-color: #f0f4f85a; */ /* removed to match the App.css background */
     /* display: flex;
     flex-direction: column;
     align-items: center;

@@ -21,16 +21,14 @@ import OTPSignIn from './components/Sign_In/Sign_In';
 import AlumniProfile from './components/Alumni_profile/Alumni_profile';
 import SignUpPage from './components/Signup/signup';
 import Admin from './components/Admin/Admin';
-
+import './App.css';
 function App() {
   // const [token, setToken] = useState(false);
   const { token, setToken } = useStore();
   return (
-
+  <div className='bg'>
     <Router>
       <ScrollToTop />
-
-      
       <Routes>
         
         <Route path="/" element={<Home />} />
@@ -56,11 +54,7 @@ function App() {
         {/* <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
       </Router>
-      
-          
-          
-      
-    
+    </div>
   )
 }
 
