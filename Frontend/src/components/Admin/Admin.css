@@ -1,6 +1,6 @@
 /* Base Styles */
 
-:root {
+.admin-dashboard-container {
     --primary-color: #4a6bff;
     --secondary-color: #6c757d;
     --danger-color: #dc3545;
@@ -13,7 +13,7 @@
     --shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-[data-theme="dark"] {
+.admin-dashboard-container[data-theme="dark"] {
     --primary-color: #5d7aff;
     --secondary-color: #5a6268;
     --danger-color: #e4606d;
@@ -340,8 +340,8 @@ body {
 }
 
 .btn-icon-small {
-    width: 14px;
-    height: 14px;
+    width: 25px;
+    height: 25px;
 }
 
 

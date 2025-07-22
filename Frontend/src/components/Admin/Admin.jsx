@@ -58,7 +58,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAlumni = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'alumnis'));
+        const querySnapshot = await getDocs(collection(db, 'students'));
         const alumniList = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
@@ -271,7 +271,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className={`dashboard-container ${theme}`} data-theme={theme}>
+    <div className='admin-dashboard-container' data-theme={theme}>
       {/* Sidebar */}
       <aside className={`sidebar ${sidebarActive ? 'active' : ''}`}>
         <div className="sidebar-header">
