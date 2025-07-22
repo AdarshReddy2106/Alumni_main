@@ -72,17 +72,18 @@ const OTPSignIn = () => {
               <p>Didn't receive the code? <button type="button" className="link-btn" ref={resendBtnRef}>Resend OTP</button></p>
             </div>
           </div>
+          <div>
+            <p>If you don't have an account <Link to="/Signup" className='link-btn'>SignUp</Link></p>
+        </div>
         </form>
-
+        
         <div className="success-message" ref={successMessageRef}>
           <div className="success-icon">✓</div>
           <h2>Authentication Successful!</h2>
           <p>Welcome to IIT Palakkad Alumni Portal. You will be redirected shortly.</p>
         </div>
 
-        <div>
-          <p>If you don't have an account <Link to="/Signup" className='link-btn'>SignUp</Link></p>
-        </div>
+        
 
         <div className="footer-info">
           <p>Indian Institute of Technology Palakkad</p>
