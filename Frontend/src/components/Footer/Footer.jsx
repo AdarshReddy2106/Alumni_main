@@ -1,5 +1,5 @@
 // import React from 'react'
-import React from "react";
+// import React from "react";
 import './Footer.css';
 import iarLogo from '../../assets/iar3.jpg';
 function Footer() {
