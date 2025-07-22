@@ -13,9 +13,9 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
-    /* align-items: center; */
+    align-items: center;
     justify-content: center;
-    /* padding: 20px; */
+    padding: 20px;
 }
 
 
@@ -66,9 +66,15 @@ body {
 
 .logo-section {
     margin-bottom: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .logo {
+    display: block;
+    margin: 0 auto;
     max-width: 140px;
     width: 100%;
     height: auto;
@@ -422,15 +428,72 @@ body {
 
 @media (max-width: 375px) {
     .signin-card {
-        padding: 32px 24px 20px;
+        padding: 20px 8px 12px;
+        border-radius: 12px;
     }
     .logo {
-        max-width: 200px;
+        max-width: 140px;
+    }
+    .header h1 {
+        font-size: 18px;
+    }
+    .header p {
+        font-size: 12px;
+    }
+    .form-group input {
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+    .btn {
+        padding: 12px 10px;
+        font-size: 14px;
     }
     #otp {
-        font-size: 18px;
-        letter-spacing: 4px;
+        font-size: 14px;
+        letter-spacing: 2px;
     }
+    .footer-info p, .footer-info .tagline {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        padding: 0 2px;
+    }
+    .signin-card {
+        padding: 10px 2px 8px;
+        border-radius: 8px;
+    }
+    .logo {
+        max-width: 100px;
+    }
+    .header h1 {
+        font-size: 14px;
+    }
+    .header p {
+        font-size: 10px;
+    }
+    .form-group input {
+        padding: 8px 4px;
+        font-size: 12px;
+    }
+    .btn {
+        padding: 8px 4px;
+        font-size: 12px;
+    }
+    #otp {
+        font-size: 12px;
+        letter-spacing: 1px;
+    }
+    .footer-info p, .footer-info .tagline {
+        font-size: 9px;
+    }
+}
+
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 
@@ -478,5 +541,19 @@ body {
     .signin-card {
         box-shadow: none;
         border: 1px solid #000;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+    .signin-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .btn.btn-primary {
+        width: 60%;
+        margin: 0 auto 20px auto;
+        display: flex;
+        justify-content: center;
     }
 }
