@@ -1,84 +1,92 @@
-/* Base Styles */
+/* Scoped styles for ReachUs page only */
 
-.reach-us-container {
+.reach-us-page {
+    width: 100%;
+    /* min-height: 80vh; */
     display: flex;
-    min-height: auto;
-    background: #f8f9fa;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 0;
+    /* background: #f8f9fa; */
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.reach-us-wrapper {
+    display: flex;
+    max-width: 1400px;
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+
+/* Left Panel - Publications */
+
 .left-panel {
     flex: 1;
-    padding: 3rem;
+    padding: 2.5rem;
     background: linear-gradient(135deg, #2c3e50 0%, #1a2533 100%);
     color: white;
 }
 
-.right-panel {
-    flex: 1;
-    padding: 3rem;
+.publications-section {
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f8f9fa;
+    flex-direction: column;
 }
 
-
-/* Publications Section */
-
 .section-header {
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 .section-header h2 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
     font-weight: 600;
 }
 
-.underline {
+.section-underline {
     height: 4px;
-    width: 60px;
+    width: 50px;
     background: #4ecdc4;
     border-radius: 2px;
 }
 
 .publication-category {
-    margin-bottom: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 .publication-category h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    margin-bottom: 1.2rem;
     color: #4ecdc4;
 }
 
 .publication-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 1.2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
 }
 
 .publication-card {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 1.2rem;
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-decoration: none;
     color: white;
+    min-height: 80px;
 }
 
 .publication-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     background: rgba(255, 255, 255, 0.15);
-}
-
-.publication-card.newsletter {
-    grid-column: span 1;
 }
 
 .edition-badge {
@@ -87,86 +95,97 @@
     right: 0;
     background: #4ecdc4;
     color: #1a2533;
-    padding: 0.3rem 0.8rem;
-    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
     font-weight: bold;
-    border-bottom-left-radius: 8px;
+    border-bottom-left-radius: 6px;
 }
 
 .publication-title {
     font-weight: 500;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 }
 
 
-/* Contact Form */
+/* Right Panel - Contact Form */
+
+.right-panel {
+    flex: 1;
+    padding: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
 
 .contact-form-container {
-    max-width: 500px;
     width: 100%;
+    max-width: 420px;
 }
 
 .form-header h2 {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
     color: #2c3e50;
     margin-bottom: 0.5rem;
 }
 
 .form-header p {
-    color: #7f8c8d;
-    margin-bottom: 2rem;
+    color: #6c757d;
+    margin-bottom: 1.8rem;
+    font-size: 0.95rem;
 }
 
 .modern-form {
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
+    gap: 1.5rem;
 }
 
-.input-group {
+.form-input-group {
     position: relative;
 }
 
-.input-group input,
-.input-group textarea {
+.form-input-group input,
+.form-input-group textarea {
     width: 100%;
-    padding: 1rem 0;
+    padding: 0.9rem 0;
     border: none;
-    border-bottom: 1px solid #bdc3c7;
+    border-bottom: 1px solid #dee2e6;
     background: transparent;
-    font-size: 1rem;
+    font-size: 0.95rem;
     transition: all 0.3s ease;
 }
 
-.input-group textarea {
+.form-input-group textarea {
     resize: none;
 }
 
-.input-group input:focus,
-.input-group textarea:focus {
+.form-input-group input:focus,
+.form-input-group textarea:focus {
     outline: none;
     border-bottom-color: #4ecdc4;
 }
 
-.input-group label {
+.form-input-group label {
     position: absolute;
-    top: 1rem;
+    top: 0.9rem;
     left: 0;
-    color: #7f8c8d;
+    color: #6c757d;
     transition: all 0.3s ease;
     pointer-events: none;
+    font-size: 0.95rem;
 }
 
-.input-group input:focus+label,
-.input-group input:not(:placeholder-shown)+label,
-.input-group textarea:focus+label,
-.input-group textarea:not(:placeholder-shown)+label {
-    top: -0.8rem;
+.form-input-group input:focus+label,
+.form-input-group input:not(:placeholder-shown)+label,
+.form-input-group textarea:focus+label,
+.form-input-group textarea:not(:placeholder-shown)+label {
+    top: -0.7rem;
     font-size: 0.8rem;
     color: #4ecdc4;
 }
 
-.input-group .underline {
+.input-underline {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -176,54 +195,73 @@
     transition: width 0.3s ease;
 }
 
-.input-group input:focus~.underline,
-.input-group textarea:focus~.underline {
+.form-input-group input:focus~.input-underline,
+.form-input-group textarea:focus~.input-underline {
     width: 100%;
 }
 
-.submit-btn {
+.form-submit-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
+    padding: 0.9rem 1.5rem;
     background: #2c3e50;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
 }
 
-.submit-btn:hover {
+.form-submit-btn:hover {
     background: #1a2533;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .arrow-icon {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     transition: transform 0.3s ease;
 }
 
-.submit-btn:hover .arrow-icon {
+.form-submit-btn:hover .arrow-icon {
     transform: translateX(3px);
 }
 
 
 /* Responsive Design */
 
+@media (max-width: 1024px) {
+    .publication-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
-    .reach-us-container {
+    .reach-us-wrapper {
         flex-direction: column;
     }
     .left-panel,
     .right-panel {
         padding: 2rem;
     }
+    .contact-form-container {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
     .publication-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        grid-template-columns: 1fr;
+    }
+    .reach-us-page {
+        padding: 1rem;
+    }
+    .left-panel,
+    .right-panel {
+        padding: 1.5rem;
     }
 }

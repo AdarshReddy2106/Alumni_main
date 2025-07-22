@@ -35,11 +35,10 @@ const ReachUs = () => {
             alert('An error occurred. Please try again later.');
         }
     };
-
     // Publication data
     const footprintsEditions = [
         { id: 1, title: "Edition 1", url: "https://drive.google.com/file/d/1xK7rInROCQ59MGoZqjlJTjw3wMp3WcUV/view?usp=sharing" },
-        { id: 2, title: "Edition 1-Issue 2", url: "https://drive.google.com/file/d/1VKp5kI0jD9sGoE3sVIr8hhgsfXTKhU23/view?usp=drive_link" },
+        { id: 2, title: "Issue 2", url: "https://drive.google.com/file/d/1VKp5kI0jD9sGoE3sVIr8hhgsfXTKhU23/view?usp=drive_link" },
         { id: 3, title: "Edition 2", url: "https://drive.google.com/file/d/1-zNNZUni8odeYjqxReuEnsUJoCgOJrh6/view?usp=sharing" },
         { id: 4, title: "Edition 3", url: "https://drive.google.com/file/d/12dYoLelfl8mwL_QOZRzcWi1JtAUaM1vL/view?usp=sharing" },
         { id: 5, title: "Edition 4", url: "https://drive.google.com/file/d/1DgO5z8jBIDzaLmW4LKhfwgjMg_bgC5Gg/view?usp=sharing" },
@@ -53,100 +52,102 @@ const ReachUs = () => {
     ];
 
     return (
-        <div className="reach-us-container">
-            <div className="left-panel">
-                <div className="publications-section">
-                    <div className="section-header">
-                        <h2>Publications</h2>
-                        <div className="underline"></div>
-                    </div>
-                    
-                    <div className="publication-category">
-                        <h3>Footprints Editions</h3>
-                        <div className="publication-grid">
-                            {footprintsEditions.map(edition => (
-                                <a 
-                                    key={edition.id}
-                                    href={edition.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="publication-card"
-                                >
-                                    <div className="edition-badge">Vol. {edition.id}</div>
-                                    <div className="publication-title">{edition.title}</div>
-                                </a>
-                            ))}
+        <div className="reach-us-page">
+            <div className="reach-us-wrapper">
+                <div className="left-panel">
+                    <div className="publications-section">
+                        <div className="section-header">
+                            <h2>Publications</h2>
+                            <div className="section-underline"></div>
                         </div>
-                    </div>
+                        
+                        <div className="publication-category">
+                            <h3>Footprints Editions</h3>
+                            <div className="publication-grid">
+                                {footprintsEditions.map(edition => (
+                                    <a 
+                                        key={edition.id}
+                                        href={edition.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="publication-card"
+                                    >
+                                        <div className="edition-badge">Vol. {edition.id}</div>
+                                        <div className="publication-title">{edition.title}</div>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
 
-                    <div className="publication-category">
-                        <h3>Newsletters</h3>
-                        <div className="publication-grid">
-                            {newsletters.map(newsletter => (
-                                <a 
-                                    key={newsletter.id}
-                                    href={newsletter.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="publication-card newsletter"
-                                >
-                                    <div className="publication-title">{newsletter.title}</div>
-                                </a>
-                            ))}
+                        <div className="publication-category">
+                            <h3>Newsletters</h3>
+                            <div className="publication-grid">
+                                {newsletters.map(newsletter => (
+                                    <a 
+                                        key={newsletter.id}
+                                        href={newsletter.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="publication-card newsletter"
+                                    >
+                                        <div className="publication-title">{newsletter.title}</div>
+                                    </a>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="right-panel">
-                <div className="contact-form-container">
-                    <div className="form-header">
-                        <h2>Get In Touch</h2>
-                        <p>Have questions? Reach out to us directly</p>
+                <div className="right-panel">
+                    <div className="contact-form-container">
+                        <div className="form-header">
+                            <h2>Get In Touch</h2>
+                            <p>Have questions? Reach out to us directly</p>
+                        </div>
+                        
+                        <form onSubmit={handleSubmit} className="modern-form">
+                            <div className="form-input-group">
+                                <input
+                                    type="text"
+                                    value={name}
+                                    onChange={(e) => setName(e.target.value)}
+                                    required
+                                    placeholder=" "
+                                />
+                                <label>Your Name</label>
+                                <div className="input-underline"></div>
+                            </div>
+                            
+                            <div className="form-input-group">
+                                <input
+                                    type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    placeholder=" "
+                                />
+                                <label>Email Address</label>
+                                <div className="input-underline"></div>
+                            </div>
+                            
+                            <div className="form-input-group textarea-group">
+                                <textarea
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    required
+                                    placeholder=" "
+                                    rows="4"
+                                />
+                                <label>Your Message</label>
+                                <div className="input-underline"></div>
+                            </div>
+                            
+                            <button type="submit" className="form-submit-btn">
+                                <span>Send Message</span>
+                                <div className="arrow-icon">→</div>
+                            </button>
+                        </form>
                     </div>
-                    
-                    <form onSubmit={handleSubmit} className="modern-form">
-                        <div className="input-group">
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                required
-                                placeholder=" "
-                            />
-                            <label>Your Name</label>
-                            <div className="underline"></div>
-                        </div>
-                        
-                        <div className="input-group">
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                required
-                                placeholder=" "
-                            />
-                            <label>Email Address</label>
-                            <div className="underline"></div>
-                        </div>
-                        
-                        <div className="input-group textarea-group">
-                            <textarea
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                                required
-                                placeholder=" "
-                                rows="4"
-                            />
-                            <label>Your Message</label>
-                            <div className="underline"></div>
-                        </div>
-                        
-                        <button type="submit" className="submit-btn">
-                            <span>Send Message</span>
-                            <div className="arrow-icon">→</div>
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>
