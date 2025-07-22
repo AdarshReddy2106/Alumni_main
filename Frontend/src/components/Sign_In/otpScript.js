@@ -88,18 +88,17 @@ export function initializeOTPSignIn({
                 if (setToken) setToken(true); // ✅ Set login token in Zustand
                 formRef.current.style.display = "none";
                 successMessageRef.current.classList.add("active");
-                let counter = 3;
+                let counter = 2;
                 const successText = successMessageRef.current.querySelector("p");
 
                 const interval = setInterval(() => {
                     counter--;
-                    if (counter > 1) {
+                    if (counter > 0) {
                         successText.textContent = `Redirecting in ${counter} seconds...`;
                     } else {
                         clearInterval(interval);
                         resetForm();
-
-                        onSuccessRedirect();
+                        window.location.href = "/"; // Redirect to home page
                     }
                 }, 1000);
             } else {
