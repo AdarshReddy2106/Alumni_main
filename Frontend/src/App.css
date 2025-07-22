@@ -1,7 +1,7 @@
 
 .bg{
     background-color: #ffffff;
-    background-image: url('../public/1.png');
+    background-image: url('/1.png');
     background-size: 1500px 1500px; 
     background-position: top left;
     background-repeat: repeat; 
