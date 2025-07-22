@@ -58,7 +58,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchAlumni = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'alumni'));
+        const querySnapshot = await getDocs(collection(db, 'alumnis'));
         const alumniList = querySnapshot.docs.map(doc => ({
           id: doc.id,
           ...doc.data()
