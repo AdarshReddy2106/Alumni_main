@@ -270,6 +270,36 @@ app.get('/alumni', async(req, res) => {
 });
 
 
+// PATCH /api/profile/:email  ->  Update only verified field
+app.patch('/api/profile/:email', async (req, res) => {
+  const email = req.params.email;
+  const { verified } = req.body;
+
+  if (typeof verified !== 'boolean') {
+    return res.status(400).json({ error: 'Invalid request: verified must be boolean' });
+  }
+
+  try {
+    const snapshot = await firestore
+      .collection('students')
+      .where('Email', '==', email)
+      .limit(1)
+      .get();
+
+    if (snapshot.empty) {
+      return res.status(404).json({ error: 'Profile not found' });
+    }
+
+    const docRef = snapshot.docs[0].ref;
+
+    await docRef.update({ verified });
+
+    res.json({ success: true, message: `Verified field updated to ${verified}` });
+  } catch (err) {
+    console.error('Error updating verified field:', err);
+    res.status(500).json({ error: 'Failed to update verification status' });
+  }
+});
 
 // Start server
 app.listen(PORT, () => {

@@ -1,0 +1,232 @@
+/* Overlay with blur */
+.update-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+
+/* .update-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: visible;
+    transition: all 0.3s ease;
+    padding: 20px;
+} */
+
+
+/* Modal box */
+.update-modal {
+  background: #ffffff;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 900px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  animation: scaleIn 0.3s ease-out;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* Modal header */
+.update-modal-header {
+  background-color: #ffcc00;
+  padding: 15px 20px;
+  margin: -25px -25px 20px -25px;
+  /* border-radius: 16px 16px 0 0; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.update-modal-header h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+/* Close button */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* Form styles */
+.update-form label {
+  font-weight: 600;
+  margin-top: 10px;
+  display: block;
+}
+
+.update-form input[type="text"],
+.update-form input[type="email"],
+.update-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ffcc00;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* Form grid for rows */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Action buttons */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.submit-btn,
+.cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background-color: #ffcc00;
+  font-weight: bold;
+}
+
+.cancel-btn {
+  background-color: #ddd;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.6) translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+.section-heading {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.profile-photo-preview {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: 10px 0 20px 0;
+}
+
+.profile-photo-preview img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 3px solid #ffcc00;
+}
+
+.update-form select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ffcc00;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  background-color: white;
+}
+
+
+.section-divider {
+  height: 3px;
+  background-color: #ffcc00;
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+
+.photo-upload {
+  border: 2px dashed #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  background-color: #fdfdfd;
+  margin-bottom: 1rem;
+}
+
+
+.submit-btn, .cancel-btn {
+  background-color: #fdd835; /* Keep your yellow theme or adjust as needed */
+  color: black;
+  border: none;
+  padding: 10px 24px;
+  font-weight: 600;
+  border-radius: 10; /* No rounded corners */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.cancel-btn {
+  background-color: #edece9f0; /* Keep your yellow theme or adjust as needed */
+  color: black;
+  border: none;
+  padding: 10px 24px;
+  font-weight: 600;
+  border-radius: 10; /* No rounded corners */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:hover, .cancel-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
