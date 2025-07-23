@@ -1,5 +1,6 @@
 {
-    "messages": [{
+    "messages": [
+        {
             "role": "Director's Message",
             "name": "Prof. A. Seshadri Sekhar",
             "title": "Professor & Director",
@@ -35,6 +36,29 @@
                 "We are confident you will continue excelling and contributing meaningfully to society. You always have a home here, and we are eager to hear about your achievements.",
                 "Congratulations once again, Class of 2024! Go forward with courage, curiosity, and conviction."
             ]
+        }
+    ],
+    "testimonials": [
+        {
+            "message": "IIT Palakkad gave me the confidence to pursue my dreams. The friendships and mentorship I found here have shaped my career and life in ways I never imagined.",
+            "name": "Ashwini Kumar",
+            "year": "B.Tech CSE, 2021",
+            "job": "Software Engineer, Google",
+            "image": "/assets/club/ashwini.jpg"
+        },
+        {
+            "message": "The vibrant campus life and academic rigor at IIT Palakkad prepared me for every challenge. I cherish the memories and am proud to be part of this community.",
+            "name": "Ruthvi Sharma",
+            "year": "B.Tech EE, 2020",
+            "job": "Data Scientist, Microsoft",
+            "image": "/assets/club/ruthvi.jpg"
+        },
+        {
+            "message": "From late-night study sessions to cultural fests, every moment at IIT Palakkad was special. The support from peers helped me grow both personally and professionally.",
+            "name": "Sai Kiran",
+            "year": "B.Tech CSE, 2019",
+            "job": "Product Manager, Amazon",
+            "image": "/assets/club/sai_kiran.jpg"
         }
     ]
 }
