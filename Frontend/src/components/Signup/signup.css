@@ -177,3 +177,8 @@ body {
     color: #adb5bd;
     cursor: not-allowed;
 }
+.error-text {
+  color: red;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}

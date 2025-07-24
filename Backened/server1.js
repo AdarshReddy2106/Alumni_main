@@ -155,6 +155,33 @@ app.post('/check-email', async(req, res) => {
     }
 });
 
+app.post('/check-duplicate', async (req, res) => {
+  const { email, campusID } = req.body;
+  if (!email || !campusID)
+    return res.status(400).json({ error: 'Email and CampusID are required' });
+
+  try {
+    const emailSnap = await firestore
+      .collection('students')
+      .where('Email', '==', email)
+      .limit(1)
+      .get();
+
+    const idSnap = await firestore
+      .collection('students')
+      .where('CampusID', '==', campusID)
+      .limit(1)
+      .get();
+
+    res.json({
+      emailExists: !emailSnap.empty,
+      idExists: !idSnap.empty,
+    });
+  } catch (e) {
+    console.error('Error checking duplicates:', e);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
 
 
 //api to fetch user profile by email
