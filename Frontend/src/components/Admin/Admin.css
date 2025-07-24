@@ -234,9 +234,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     background-color: white;
-    margin: 20px;
+    margin: 10px;
     border-radius: 8px;
     box-shadow: var(--shadow);
 }
@@ -337,6 +337,7 @@ body {
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
+    /* align-items: center; */
 }
 
 .btn-icon-small {
