@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import './Sign_In.css';
 import { initializeOTPSignIn } from './otpScript';
 import logo from "../../assets/OTP/IIT_PKD_long logo_RGB.jpg"
@@ -14,6 +14,7 @@ const OTPSignIn = () => {
   const successMessageRef = useRef(null);
   const formRef = useRef(null);
   const { setToken } = useStore(); // ✅ Get token setter inside the component
+  const [emailNotFound, setEmailNotFound] = useState(false); //for handling email not found state
 
   console.log("Token state:", setToken);
   useEffect(() => {
@@ -30,6 +31,9 @@ const OTPSignIn = () => {
       onSuccessRedirect: () => {
         // window.location.href = '/profile'; // or useNavigate for React Router
       },
+      onEmailNotFound: () => {
+        setEmailNotFound(true); // Show popup if email not found
+      },
     });
   }, []);
 
@@ -37,6 +41,21 @@ const OTPSignIn = () => {
     <div className="otp-signin-page">
     <div className="container">
       <div className="signin-card">
+
+          {emailNotFound && (
+            <div className="popup-overlay"
+             onClick={() => setEmailNotFound(false)}
+            >
+              <div className="popup error"
+               onClick={(e) => e.stopPropagation()}
+              >
+                <p>Email is not registered. Please <Link to="/Signup">Sign Up</Link>.</p>
+                <button className="close-btn" onClick={() => setEmailNotFound(false)}>×</button>
+              </div>
+            </div>
+          )}
+
+
         <div className="header">
           <div className="logo-section">
             <img src={logo} alt="IIT Palakkad Logo" className="logo" />

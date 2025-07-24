@@ -578,3 +578,56 @@ body {
         justify-content: center;
     }
 }
+
+
+
+/* for the pop up on email not registered */
+
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px); 
+  background-color: rgba(0, 0, 0, 0.3); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+.popup.error {
+  background: white;
+  padding: 1.5rem 2rem;
+  border: 3px solid #FFD700; 
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  z-index: 1001;
+  color: #333;
+  font-family: sans-serif;
+}
+
+
+.popup .close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #FFA500; 
+  transition: color 0.2s ease;
+}
+.popup .close-btn:hover {
+  color: #cc8400; 
+}
+
+

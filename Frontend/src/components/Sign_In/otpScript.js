@@ -19,6 +19,7 @@ export function initializeOTPSignIn({
         window.close();
 
     },
+    onEmailNotFound = () => {},
 }) {
 
 
@@ -44,6 +45,21 @@ export function initializeOTPSignIn({
         }
         showLoader(sendOtpBtnRef.current);
         try {
+            const emailCheck = await fetch(`${BASE_URL}/check-email`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email }),
+            });
+
+            const data = await emailCheck.json();
+            if (data.exists === false) {
+                onEmailNotFound(); 
+                showError("emailError", "Email not registered");
+                hideLoader(sendOtpBtnRef.current);
+                console.log("Email not registered:", email);
+                return;
+            }
+            
             const res = await fetch(`${BASE_URL}/send-otp`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -64,6 +80,7 @@ export function initializeOTPSignIn({
             showError("emailError", "Network error.");
         }
         hideLoader(sendOtpBtnRef.current);
+    
     }
 
     async function verifyOTP() {
