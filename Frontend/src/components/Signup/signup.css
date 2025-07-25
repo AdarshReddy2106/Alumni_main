@@ -182,3 +182,19 @@ body {
   margin-bottom: 1rem;
   font-weight: 500;
 }
+
+.success-text {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-weight: 500;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

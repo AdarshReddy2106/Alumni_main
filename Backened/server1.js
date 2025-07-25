@@ -184,6 +184,47 @@ app.post('/check-duplicate', async (req, res) => {
 });
 
 
+
+app.post('/register', async (req, res) => {
+  const data = req.body;
+
+  const requiredFields = ['CampusID', 'Name', 'Email', 'ContactNumber1', 'WhatsAppNumber', 'CountryCode', 'Deparment', 'Degree', 'YearOfPassOut', 'Hostel', 'CurrentLocation'];
+  for (const field of requiredFields) {
+    if (!data[field]) {
+      return res.status(400).json({ error: `Missing required field: ${field}` });
+    }
+  }
+
+  try {
+    // Check if document with this CampusID already exists
+    const docRef = firestore.collection('students').doc(data.CampusID);
+    const docSnapshot = await docRef.get();
+    
+    if (docSnapshot.exists) {
+      return res.status(400).json({ error: 'A record with this CampusID already exists' });
+    }
+
+    // Create new document with CampusID as document ID
+    await docRef.set({
+      ...data,
+      verified: false,
+      testimonial: ''  
+    });
+    
+    res.json({ 
+      success: true, 
+      message: 'User registered successfully with campusID as document ID'
+    });
+  } catch (err) {
+    console.error('Error adding user to Firestore:', err);
+    res.status(500).json({ error: 'Failed to store user data' });
+  }
+});
+
+
+
+
+
 //api to fetch user profile by email
 app.get('/api/profile/:email', async(req, res) => {
     const email = req.params.email;

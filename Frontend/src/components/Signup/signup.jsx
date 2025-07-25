@@ -26,7 +26,7 @@ const SignUpPage = () => {
   const [degrees, setDegrees] = useState([]);
   const [passoutYears, setPassoutYears] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
-
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -98,8 +98,48 @@ const SignUpPage = () => {
       }
 
       // Proceed if no error
-      console.log('Submitted:', formData);
-      navigate(-1); // Redirect back
+      // Format data to match Firestore field names
+      // Proceed if no error
+      const firestorePayload = {
+        CampusID: formData.campusID,
+        Name: formData.name,
+        Email: formData.email,
+        ContactNumber1: formData.contact1,
+        ContactNumber2: formData.contact2 || '',
+        WhatsAppNumber: formData.whatsapp,
+        CountryCode: formData.countryCode,
+        LinkedInProfile: formData.linkedin,
+        Deparment: formData.department,
+        Degree: formData.degree,
+        YearOfPassOut: formData.passoutYear,
+        Hostel: formData.hostel,
+        CurrentLocation: formData.location,
+        Organisation: formData.organisation || '',
+        Designation: formData.designation || '',
+        Awards: formData.awards || '',
+      };
+
+      try {
+        const registerRes = await fetch('http://localhost:3000/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(firestorePayload),
+        });
+
+        const registerData = await registerRes.json();
+
+        if (registerData.success) {
+          setSuccessMessage('🎉 Registration successful! Redirecting to homepage...');
+          setTimeout(() => {
+            navigate('/');
+          }, 2500);
+        } else {
+          setErrorMessage(registerData.error || 'Registration failed');
+        }
+      } catch (error) {
+        console.error('Error storing data:', error);
+        setErrorMessage('Something went wrong while registering. Please try again later.');
+      }
     } catch (error) {
       console.error('Error checking duplicates:', error);
       setErrorMessage('Something went wrong while checking duplicates. Please try again later.');
@@ -166,6 +206,7 @@ const SignUpPage = () => {
             <p>Already have an account? <Link to="/Otp" className="link-btn">Sign In</Link></p>
           </div>
 
+          {successMessage && <p className="success-text">{successMessage}</p>}
           {errorMessage && <p className="error-text">{errorMessage}</p>}
 
           <div className="signup-submit-section">
