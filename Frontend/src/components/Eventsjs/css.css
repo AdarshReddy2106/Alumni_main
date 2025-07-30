@@ -8,6 +8,247 @@
     max-width: 75rem;
     background: white;
     font: larger;
+    padding: 2rem;
+    line-height: 1.6;
     /* box-shadow: 0 4px 10px rgba(31, 31, 28, 0.5);
         border-radius: 2rem; */
+}
+
+.event-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 1rem;
+}
+
+.event-header h1 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 700;
+}
+
+.event-date {
+    color: #3498db;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.event-speaker {
+    color: #27ae60;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+.event-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.event-description,
+.event-highlights,
+.event-objectives,
+.event-benefits,
+.session-topics,
+.session-format,
+.target-audience,
+.session-outcomes,
+.event-impact,
+.participating-batches,
+.key-learnings,
+.future-connections,
+.speaker-info,
+.session-details,
+.session-impact,
+.key-takeaways,
+.session-availability,
+.related-events {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.speaker-info {
+    border-left-color: #27ae60;
+}
+
+.session-details {
+    border-left-color: #e74c3c;
+}
+
+.image-placeholder {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.event-image {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.event-photo {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-photo:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.image-caption {
+    color: #666;
+    font-size: 0.95rem;
+    font-style: italic;
+    text-align: center;
+    max-width: 600px;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.image-slot {
+    width: 100%;
+    max-width: 600px;
+    height: 300px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border: 2px dashed #3498db;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3498db;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.image-slot:hover {
+    background: linear-gradient(135deg, #e8f4f8 0%, #a8c8ec 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+}
+
+.speaker-details h3 {
+    color: #27ae60;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.speaker-details p {
+    margin: 0.3rem 0;
+    color: #555;
+}
+
+.event-content h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.event-content p {
+    color: #555;
+    font-size: 1.1rem;
+    margin: 0;
+    text-align: justify;
+}
+
+.event-content ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.event-content li {
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.event-content li::before {
+    content: "▸";
+    color: #3498db;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .subEvents {
+        padding: 1rem;
+        max-width: 95%;
+    }
+    
+    .event-header h1 {
+        font-size: 2rem;
+    }
+    
+    .event-content h2 {
+        font-size: 1.3rem;
+    }
+    
+    .event-description,
+    .event-highlights,
+    .event-objectives,
+    .event-benefits,
+    .session-topics,
+    .session-format,
+    .target-audience,
+    .session-outcomes,
+    .event-impact,
+    .participating-batches,
+    .key-learnings,
+    .future-connections,
+    .speaker-info,
+    .session-details,
+    .session-impact,
+    .key-takeaways,
+    .session-availability,
+    .related-events {
+        padding: 1rem;
+    }
+    
+    .image-slot {
+        height: 200px;
+        font-size: 1rem;
+    }
+    
+    .event-date {
+        font-size: 1.1rem;
+    }
+    
+    .event-speaker {
+        font-size: 1rem;
+    }
+
+    .event-photo {
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .image-caption {
+        font-size: 0.9rem;
+        padding: 0 1rem;
+    }
+
+    .event-image {
+        margin: 1.5rem 0;
+    }
 }
