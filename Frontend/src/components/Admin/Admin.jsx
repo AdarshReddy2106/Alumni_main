@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {db} from '../../firebase/firebaseConfig'
 // import { initializeApp } from 'firebase/firestore';
 import { getFirestore, collection, getDocs, addDoc, updateDoc, doc, deleteDoc } from 'firebase/firestore';
-import './admin.css';
+import './Admin.css';
 import iarcell from '../../assets/iar.png';
 
 
