@@ -25,6 +25,42 @@ const AdminDashboard = () => {
   const [activeModal, setActiveModal] = useState(null);
   const fileInputRef = useRef(null);
   
+  
+  const [departments, setDepartments] = useState([]);
+  const [degrees, setDegrees] = useState([]);
+  const [passoutYears, setPassoutYears] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+
+  useEffect(() => {
+    const fetchMetadata = async () => {
+      try {
+        const [deptRes, degRes, yearRes] = await Promise.all([
+          fetch('http://localhost:3000/departments'),
+          fetch('http://localhost:3000/degrees'),
+          fetch('http://localhost:3000/passout-years')
+        ]);
+
+        const [deptData, degData, yearData] = await Promise.all([
+          deptRes.json(), degRes.json(), yearRes.json()
+        ]);
+
+        setDepartments(deptData.map(d => d.Deparment));
+        setDegrees(degData.map(d => d.Degree));
+        setPassoutYears(yearData.map(y => y.YearOfPassOut));
+      } catch (error) {
+        console.error('Error fetching metadata:', error);
+        setErrorMessage('Failed to load dropdown options. Please try again later.');
+      }
+       };
+
+    fetchMetadata();
+  }, []);
+
+
+
+
   // Form state
   const [newAlumni, setNewAlumni] = useState({
     CampusID: '',
@@ -242,12 +278,12 @@ const AdminDashboard = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Department options
-  const departments = [
-    'Computer Science', 
-    'Electrical Engineering', 
-    'Mechanical Engineering', 
-    'Civil Engineering'
-  ];
+  // const departments = [
+  //   'Computer Science', 
+  //   'Electrical Engineering', 
+  //   'Mechanical Engineering', 
+  //   'Civil Engineering'
+  // ];
 
   // Year options
   const currentYear = new Date().getFullYear();
@@ -899,6 +935,7 @@ const AdminDashboard = () => {
                 <div className="form-group">
                   <label>
                     <input
+                      
                       type="checkbox"
                       name="verified"
                       checked={editAlumni.verified}
