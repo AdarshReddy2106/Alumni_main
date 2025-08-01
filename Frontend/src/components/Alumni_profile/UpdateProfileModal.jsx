@@ -19,7 +19,7 @@ const UpdateProfileModal = ({ isOpen, onClose, onSuccess }) => {
       return;
     }
 
-    fetch(`http://localhost:3000/api/profile/${encodeURIComponent(email)}`)
+    fetch(`https://alumni-website-v7pq.onrender.com/api/profile/${encodeURIComponent(email)}`)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
@@ -81,7 +81,7 @@ if(!isOpen)return null;
                 // Trigger toaster in parent
                 onSuccess();
 
-                fetch(`http://localhost:3000/api/profile/${encodeURIComponent(profile.Email)}`, {
+                fetch(`https://alumni-website-v7pq.onrender.com/api/profile/${encodeURIComponent(profile.Email)}`, {
                     method: 'PATCH', // or PUT if your backend requires full updates
                     headers: {
                       'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ if(!isOpen)return null;
                       alert("Something went wrong. Please try again.");
                     });
 
-                // (Optional) Here you can send updated data to backend if needed
+                
                 }}
 
 

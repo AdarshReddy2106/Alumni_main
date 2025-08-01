@@ -32,7 +32,7 @@ const AlumniProfile = () => {
       return;
     }
 
-    fetch(`http://localhost:3000/api/profile/${encodeURIComponent(email)}`)
+    fetch(`https://alumni-website-v7pq.onrender.com/api/profile/${encodeURIComponent(email)}`)
       .then(res => res.json())
       .then(data => setProfile(data))
       .catch(err => console.error('Error:', err));

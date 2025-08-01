@@ -17,7 +17,7 @@ const AlumniDirectory = () => {
   const [departments, setDepartments] = useState([]);
   const [degrees, setDegrees] = useState([]);
 
-  const BASE_URL = "http://localhost:3000";
+  const BASE_URL = "https://alumni-website-v7pq.onrender.com";
 
   useEffect(() => {
     fetch(`${BASE_URL}/passout-years`)

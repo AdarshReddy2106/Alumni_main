@@ -37,9 +37,9 @@ const AdminDashboard = () => {
     const fetchMetadata = async () => {
       try {
         const [deptRes, degRes, yearRes] = await Promise.all([
-          fetch('http://localhost:3000/departments'),
-          fetch('http://localhost:3000/degrees'),
-          fetch('http://localhost:3000/passout-years')
+          fetch('https://alumni-website-v7pq.onrender.com/departments'),
+          fetch('https://alumni-website-v7pq.onrender.com/degrees'),
+          fetch('https://alumni-website-v7pq.onrender.com/passout-years')
         ]);
 
         const [deptData, degData, yearData] = await Promise.all([

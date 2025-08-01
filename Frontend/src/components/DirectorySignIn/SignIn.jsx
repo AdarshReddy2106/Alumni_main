@@ -16,9 +16,12 @@ import { useState, useEffect } from 'react';
 import useStore from '../../Store';
 
 
-const REDIRECT_URI = '/AlumniDirectory';
-const port = 3000;
-const ip = import.meta.env.VITE_IP_ADDRESS || "http://localhost";
+//const REDIRECT_URI = '/AlumniDirectory';
+// const port = 3000;
+// const ip = import.meta.env.VITE_IP_ADDRESS || "http://localhost";
+const BASE_URL = "https://alumni-website-v7pq.onrender.com";
+
+
 
 const GoogleClientID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 console.log("google client ID: ", GoogleClientID);
@@ -104,13 +107,12 @@ const SignIn = () => {
 
     const handleSocialLogin = async (email) => {
         try {
-            const response = await fetch(`http://${ip}:${port}/check-email`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
+            const response = await fetch(`${BASE_URL}/check-email`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email }),
             });
+
 
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

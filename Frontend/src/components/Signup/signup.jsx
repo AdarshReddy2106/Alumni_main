@@ -33,9 +33,9 @@ const SignUpPage = () => {
     const fetchMetadata = async () => {
       try {
         const [deptRes, degRes, yearRes] = await Promise.all([
-          fetch('http://localhost:3000/departments'),
-          fetch('http://localhost:3000/degrees'),
-          fetch('http://localhost:3000/passout-years')
+          fetch('https://alumni-website-v7pq.onrender.com/departments'),
+          fetch('https://alumni-website-v7pq.onrender.com/degrees'),
+          fetch('https://alumni-website-v7pq.onrender.com/passout-years')
         ]);
 
         const [deptData, degData, yearData] = await Promise.all([
@@ -76,7 +76,7 @@ const SignUpPage = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/check-duplicate', {
+      const response = await fetch('https://alumni-website-v7pq.onrender.com/check-duplicate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -120,7 +120,7 @@ const SignUpPage = () => {
       };
 
       try {
-        const registerRes = await fetch('http://localhost:3000/register', {
+        const registerRes = await fetch('https://alumni-website-v7pq.onrender.com/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(firestorePayload),

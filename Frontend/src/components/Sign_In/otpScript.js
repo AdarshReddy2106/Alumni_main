@@ -1,7 +1,7 @@
-const BASE_URL =
-    window.location.hostname === "localhost" ?
-    "http://localhost:3000" :
-    "https://your-production-url.com";
+const BASE_URL ="https://alumni-website-v7pq.onrender.com"
+    // window.location.hostname === "localhost" ?
+    // "http://localhost:3000" :
+    // "https://your-production-url.com";
 
 
 export function initializeOTPSignIn({
