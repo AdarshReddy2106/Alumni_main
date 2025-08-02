@@ -38,7 +38,7 @@ function Main() {
           </div>
         ))}
       </section>
-      <TestimonialSlider />
+      {/* <TestimonialSlider /> */}
     </>
   );
 }

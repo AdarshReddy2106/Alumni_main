@@ -1,26 +1,20 @@
 {
     "faculty": [{
-            "name": "Dr. Dinesh Setti",
+            "name": "Dr. Subrahmanyam Mula",
             "title": "Assistant Professor",
-            "department": "Mechanical Engineering",
+            "department": "Electrical Engineering",
             "role": "Faculty-in-charge, International and Alumni Relations",
             "email": "fc_iar@iitkpd.ac.in",
-            "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/Dinesh%20Setti%20%281%29-resized.jpg"
+            "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/Subramaniam%20Mula.jpg"
         },
-        {
-            "name": "Ms. Kavitha G R",
-            "title": "Manager, International Relations",
-            "email": "iar@iitkpd.ac.in",
-            "phone": "+91 9444536574",
-            "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/kavitha-photo-resized_0.jpg"
-        },
+
         {
             "name": "Ms. Nibedita Dey",
-            "title": "Executive, International Relations",
+            "title": "Assistant Manager, International Relations",
             "address": "D3 Block, Sahyadri Campus",
             "phone": "+91 4923226533",
             "mobile": "+91 7595911769",
-            "email": "ar_office@iitkpd.ac.in",
+            "email": "ir_office@iitkpd.ac.in",
             "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/nibe-resized.jpg"
         }
     ],
