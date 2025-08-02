@@ -15,13 +15,7 @@ app.use(express.json());
 
 // Firebase Admin SDK Initialization for firestore db
 // the configuration file with firebase account credentials in the same directory 
-const admin = require('firebase-admin');
-const serviceAccount = require('./firebase-service-account.json');
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-});
-const firestore = admin.firestore();
-
+const { firestore } = require("./firebase");
 
 // Simulate a connection check for the Firestore database
 firestore.collection('students').limit(1).get()
@@ -155,70 +149,70 @@ app.post('/check-email', async(req, res) => {
     }
 });
 
-app.post('/check-duplicate', async (req, res) => {
-  const { email, campusID } = req.body;
-  if (!email || !campusID)
-    return res.status(400).json({ error: 'Email and CampusID are required' });
+app.post('/check-duplicate', async(req, res) => {
+    const { email, campusID } = req.body;
+    if (!email || !campusID)
+        return res.status(400).json({ error: 'Email and CampusID are required' });
 
-  try {
-    const emailSnap = await firestore
-      .collection('students')
-      .where('Email', '==', email)
-      .limit(1)
-      .get();
+    try {
+        const emailSnap = await firestore
+            .collection('students')
+            .where('Email', '==', email)
+            .limit(1)
+            .get();
 
-    const idSnap = await firestore
-      .collection('students')
-      .where('CampusID', '==', campusID)
-      .limit(1)
-      .get();
+        const idSnap = await firestore
+            .collection('students')
+            .where('CampusID', '==', campusID)
+            .limit(1)
+            .get();
 
-    res.json({
-      emailExists: !emailSnap.empty,
-      idExists: !idSnap.empty,
-    });
-  } catch (e) {
-    console.error('Error checking duplicates:', e);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+        res.json({
+            emailExists: !emailSnap.empty,
+            idExists: !idSnap.empty,
+        });
+    } catch (e) {
+        console.error('Error checking duplicates:', e);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 
 
-app.post('/register', async (req, res) => {
-  const data = req.body;
+app.post('/register', async(req, res) => {
+    const data = req.body;
 
-  const requiredFields = ['CampusID', 'Name', 'Email', 'ContactNumber1', 'WhatsAppNumber', 'CountryCode', 'Deparment', 'Degree', 'YearOfPassOut', 'Hostel', 'CurrentLocation'];
-  for (const field of requiredFields) {
-    if (!data[field]) {
-      return res.status(400).json({ error: `Missing required field: ${field}` });
-    }
-  }
-
-  try {
-    // Check if document with this CampusID already exists
-    const docRef = firestore.collection('students').doc(data.CampusID);
-    const docSnapshot = await docRef.get();
-    
-    if (docSnapshot.exists) {
-      return res.status(400).json({ error: 'A record with this CampusID already exists' });
+    const requiredFields = ['CampusID', 'Name', 'Email', 'ContactNumber1', 'WhatsAppNumber', 'CountryCode', 'Deparment', 'Degree', 'YearOfPassOut', 'Hostel', 'CurrentLocation'];
+    for (const field of requiredFields) {
+        if (!data[field]) {
+            return res.status(400).json({ error: `Missing required field: ${field}` });
+        }
     }
 
-    // Create new document with CampusID as document ID
-    await docRef.set({
-      ...data,
-      verified: false,
-      testimonial: ''  
-    });
-    
-    res.json({ 
-      success: true, 
-      message: 'User registered successfully with campusID as document ID'
-    });
-  } catch (err) {
-    console.error('Error adding user to Firestore:', err);
-    res.status(500).json({ error: 'Failed to store user data' });
-  }
+    try {
+        // Check if document with this CampusID already exists
+        const docRef = firestore.collection('students').doc(data.CampusID);
+        const docSnapshot = await docRef.get();
+
+        if (docSnapshot.exists) {
+            return res.status(400).json({ error: 'A record with this CampusID already exists' });
+        }
+
+        // Create new document with CampusID as document ID
+        await docRef.set({
+            ...data,
+            verified: false,
+            testimonial: ''
+        });
+
+        res.json({
+            success: true,
+            message: 'User registered successfully with campusID as document ID'
+        });
+    } catch (err) {
+        console.error('Error adding user to Firestore:', err);
+        res.status(500).json({ error: 'Failed to store user data' });
+    }
 });
 
 
@@ -339,34 +333,34 @@ app.get('/alumni', async(req, res) => {
 
 
 // PATCH /api/profile/:email  ->  Update only verified field
-app.patch('/api/profile/:email', async (req, res) => {
-  const email = req.params.email;
-  const { verified } = req.body;
+app.patch('/api/profile/:email', async(req, res) => {
+    const email = req.params.email;
+    const { verified } = req.body;
 
-  if (typeof verified !== 'boolean') {
-    return res.status(400).json({ error: 'Invalid request: verified must be boolean' });
-  }
-
-  try {
-    const snapshot = await firestore
-      .collection('students')
-      .where('Email', '==', email)
-      .limit(1)
-      .get();
-
-    if (snapshot.empty) {
-      return res.status(404).json({ error: 'Profile not found' });
+    if (typeof verified !== 'boolean') {
+        return res.status(400).json({ error: 'Invalid request: verified must be boolean' });
     }
 
-    const docRef = snapshot.docs[0].ref;
+    try {
+        const snapshot = await firestore
+            .collection('students')
+            .where('Email', '==', email)
+            .limit(1)
+            .get();
 
-    await docRef.update({ verified });
+        if (snapshot.empty) {
+            return res.status(404).json({ error: 'Profile not found' });
+        }
 
-    res.json({ success: true, message: `Verified field updated to ${verified}` });
-  } catch (err) {
-    console.error('Error updating verified field:', err);
-    res.status(500).json({ error: 'Failed to update verification status' });
-  }
+        const docRef = snapshot.docs[0].ref;
+
+        await docRef.update({ verified });
+
+        res.json({ success: true, message: `Verified field updated to ${verified}` });
+    } catch (err) {
+        console.error('Error updating verified field:', err);
+        res.status(500).json({ error: 'Failed to update verification status' });
+    }
 });
 
 // Start server

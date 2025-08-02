@@ -1,4 +1,4 @@
-const BASE_URL ="https://alumni-website-v7pq.onrender.com"
+const BASE_URL = "https://alumni-website-v7pq.onrender.com"
     // window.location.hostname === "localhost" ?
     // "http://localhost:3000" :
     // "https://your-production-url.com";
@@ -53,13 +53,13 @@ export function initializeOTPSignIn({
 
             const data = await emailCheck.json();
             if (data.exists === false) {
-                onEmailNotFound(); 
+                onEmailNotFound();
                 showError("emailError", "Email not registered");
                 hideLoader(sendOtpBtnRef.current);
                 console.log("Email not registered:", email);
                 return;
             }
-            
+
             const res = await fetch(`${BASE_URL}/send-otp`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -80,7 +80,7 @@ export function initializeOTPSignIn({
             showError("emailError", "Network error.");
         }
         hideLoader(sendOtpBtnRef.current);
-    
+
     }
 
     async function verifyOTP() {
@@ -102,7 +102,7 @@ export function initializeOTPSignIn({
             const result = await res.json();
 
             if (result.success) {
-                if (setToken) setToken(true); // ✅ Set login token in Zustand
+                if (!setToken) setToken(true); // ✅ Set login token in Zustand
                 formRef.current.style.display = "none";
                 successMessageRef.current.classList.add("active");
                 let counter = 2;
