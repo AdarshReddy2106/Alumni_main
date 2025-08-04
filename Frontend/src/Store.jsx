@@ -2,7 +2,7 @@
 import { create } from "zustand";
 
 const useStore = create((set) => ({
-    token: false, // default is not logged in
+    token: false, 
     setToken: (newToken) => set({ token: newToken }),
 }));
 

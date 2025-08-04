@@ -102,7 +102,7 @@ export function initializeOTPSignIn({
             const result = await res.json();
 
             if (result.success) {
-                setToken(true); // ✅ Set login token in Zustand
+                setToken(true); 
                 formRef.current.style.display = "none";
                 successMessageRef.current.classList.add("active");
                 let counter = 2;
