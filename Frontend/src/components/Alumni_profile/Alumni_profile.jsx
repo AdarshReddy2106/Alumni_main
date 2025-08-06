@@ -14,7 +14,7 @@ const AlumniProfile = () => {
   const [showVerifyModal, setShowVerifyModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [verified,setVerified]=useState(false);
-   const email = useStore((state)=>state.userEmail);
+  const email = useStore((state)=>state.userEmail);
 
   const handleSuccess = () => {
     setShowSuccess(true);

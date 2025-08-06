@@ -201,7 +201,31 @@ app.post('/register', async(req, res) => {
 
 
 
+//api to fetch user profile by email
+// API to fetch user profile by email
+app.get("/api/profile/:email", async(req, res) => {
+    const email = decodeURIComponent(req.params.email);
 
+    try {
+        const snapshot = await firestore
+            .collection("students")
+            .where("Email", "==", email)
+            .limit(1)
+            .get();
+
+        if (snapshot.empty) {
+            return res.status(404).json({ error: "Profile not found" });
+        }
+
+        const doc = snapshot.docs[0];
+        const data = doc.data();
+
+        res.json(data);
+    } catch (err) {
+        console.error("Error fetching profile:", err);
+        res.status(500).json({ error: "Failed to fetch profile" });
+    }
+});
 
 
 
@@ -297,6 +321,7 @@ app.get('/alumni', async(req, res) => {
 
 
 //api to fetch user profile by email
+// API to update user profile by email
 app.patch("/api/profile/:email", async(req, res) => {
     const email = decodeURIComponent(req.params.email);
     const updatedData = req.body;
