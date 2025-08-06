@@ -34,9 +34,16 @@ const AlumniProfile = () => {
     }
 
     fetch(`https://alumni-website-v7pq.onrender.com/api/profile/${encodeURIComponent(email)}`)
-      .then(res => res.json())
-      .then(data => setProfile(data))
-      .catch(err => console.error('Error:', err));
+     .then(async (res) => {
+    if (!res.ok) {
+      const text = await res.text();  // show the HTML error page
+      console.error("Error Response:", text);
+      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+    }
+    return res.json();
+  })
+  .then(data => console.log("Fetched profile:", data))
+  .catch(err => console.error("Fetch error:", err));
   }, []);
 
   if (!profile) return <p>Loading profile...</p>;

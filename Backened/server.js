@@ -221,9 +221,8 @@ app.post('/register', async(req, res) => {
 
 
 //api to fetch user profile by email
-app.patch("/api/profile/:email", async(req, res) => {
-    const email = req.params.email;
-    const updates = req.body;
+app.get("/api/profile/:email", async(req, res) => {
+    const email = decodeURIComponent(req.params.email);
 
     try {
         const snapshot = await firestore
@@ -236,16 +235,14 @@ app.patch("/api/profile/:email", async(req, res) => {
             return res.status(404).json({ error: "Profile not found" });
         }
 
-        const docRef = snapshot.docs[0].ref;
-
-        await docRef.update(updates);
-
-        res.json({ success: true, message: "Profile updated successfully" });
+        const profileData = snapshot.docs[0].data();
+        res.json(profileData);
     } catch (err) {
-        console.error("Error updating profile:", err);
-        res.status(500).json({ error: "Failed to update profile" });
+        console.error("Error fetching profile:", err);
+        res.status(500).json({ error: "Failed to fetch profile" });
     }
 });
+
 
 
 // cache to store dropdown metadata 

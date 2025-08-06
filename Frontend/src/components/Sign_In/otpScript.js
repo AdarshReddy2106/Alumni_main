@@ -99,7 +99,7 @@ export function initializeOTPSignIn({
 
                 if (setToken) {
                     setToken(true);
-                    if (setUserEmail) setUserEmail(currentEmail); // ✅ Add this line
+                    if (setUserEmail) setUserEmail(currentEmail);
                 }
 
 
