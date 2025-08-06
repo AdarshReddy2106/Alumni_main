@@ -48,7 +48,7 @@ const ReachUs = () => {
     const newsletters = [
         { id: 1, title: "Newsletter 1", url: "https://drive.google.com/file/d/1V6h9yItZnlhNJlVNSrSyF2hm9PnXUK7a/view" },
         { id: 2, title: "Newsletter 2", url: "https://drive.google.com/file/d/1GXC2ERhJ38DMiqiWA1d-XF9nTmi85nuT/view" },
-        { id: 3, title: "Newsletter 3", url: "https://drive.google.com/file/d/19ora8B9_tbcMfpF62jhX5NR7MAefCa8W/view" }
+        // { id: 3, title: "Newsletter 3", url: "https://drive.google.com/file/d/19ora8B9_tbcMfpF62jhX5NR7MAefCa8W/view" }
     ];
 
     return (

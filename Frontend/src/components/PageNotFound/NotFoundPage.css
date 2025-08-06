@@ -1,0 +1,30 @@
+.not-found-page {
+    text-align: center;
+    padding: 100px 20px;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: white
+}
+
+.not-found-page h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ff4c4c;
+}
+
+.not-found-page p {
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+.home-link {
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #0077cc;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.home-link:hover {
+    background-color: #005fa3;
+}

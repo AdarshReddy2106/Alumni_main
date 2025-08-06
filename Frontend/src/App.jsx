@@ -21,6 +21,7 @@ import AlumniProfile from './components/Alumni_profile/Alumni_profile';
 import SignUpPage from './components/Signup/signup';
 import Admin from './components/Admin/Admin';
 import './App.css';
+import NotFoundPage from './components/PageNotFound/NotFoudPage';
 function App() {
   const token = useStore((state) => state.token);
   return (
@@ -49,7 +50,7 @@ function App() {
         <Route element={<PrivateRoute1 token={token}/>}> 
             <Route path="/AlumniDirectory" element={<AlumniDirectory/>}/>    
         </Route>
-        {/* <Route path="*" element={<NotFoundPage />} />  */}
+          <Route path="*" element={<NotFoundPage />} />
       </Routes>
       </Router>
     </div>
