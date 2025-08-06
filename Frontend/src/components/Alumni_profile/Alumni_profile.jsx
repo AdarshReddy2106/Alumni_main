@@ -27,24 +27,29 @@ const AlumniProfile = () => {
   //   setTimeout(() => setVerified(false),3000);
   // }
 
-  useEffect(() => {
-    if (!email) {
-      console.error('No email found in localStorage');
-      return;
-    }
+ useEffect(() => {
+  if (email) {
+    fetchProfile();
+  }
+}, [email]);
 
-    fetch(`https://alumni-website-v7pq.onrender.com/api/profile/${encodeURIComponent(email)}`)
-     .then(async (res) => {
-    if (!res.ok) {
-      const text = await res.text();  // show the HTML error page
-      console.error("Error Response:", text);
-      throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-    }
-    return res.json();
-  })
-  .then(data => console.log("Fetched profile:", data))
-  .catch(err => console.error("Fetch error:", err));
-  }, []);
+const fetchProfile = () => {
+  fetch(`https://alumni-website-v7pq.onrender.com/api/profile/${encodeURIComponent(email)}`)
+    .then(async (res) => {
+      if (!res.ok) {
+        const text = await res.text();
+        console.error("Error Response:", text);
+        throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+      }
+      return res.json();
+    })
+    .then(data => {
+      console.log("Fetched profile:", data);
+      setProfile(data);
+    })
+    .catch(err => console.error("Fetch error:", err));
+};
+
 
   if (!profile) return <p>Loading profile...</p>;
 
@@ -171,7 +176,11 @@ const AlumniProfile = () => {
         <UpdateProfileModal
           isOpen={showUpdateModal}
           onClose={() => setShowUpdateModal(false)}
-          onSuccess={handleSuccess}
+          onSuccess={() => {
+            handleSuccess();
+            fetchProfile();
+          }
+          }
         />
       )}
 

@@ -11,11 +11,10 @@ const PORT = process.env.PORT || 5175;
 // Middleware
 app.use(cors());
 app.use(express.json());
-
-
 // Firebase Admin SDK Initialization for firestore db
 // the configuration file with firebase account credentials in the same directory 
 const { firestore } = require("./firebase");
+
 
 // Simulate a connection check for the Firestore database
 firestore.collection('students').limit(1).get()
@@ -37,24 +36,6 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-
-
-// // MySQL Connection
-// const db = mysql.createConnection({
-//     host: process.env.DB_HOST || "localhost",
-//     user: process.env.DB_USER || "root",
-//     password: process.env.DB_PASSWORD || "",
-//     database: process.env.DB_NAME || "IAR_CELL_MODEL",
-//     port: 3306,
-// });
-
-// db.connect((err) => {
-//     if (err) {
-//         console.error("Database connection failed:", err);
-//         return;
-//     }
-//     console.log("✅ Connected to MySQL Database");
-// });
 
 // OTP store (in-memory)
 const otpStore = {}; // { email: { code: '123456', expiresAt: Date } }
@@ -104,6 +85,8 @@ app.post("/send-otp", async(req, res) => {
     }
 });
 
+
+
 // POST /verify-otp
 app.post("/verify-otp", (req, res) => {
     const { email, otp } = req.body;
@@ -122,7 +105,7 @@ app.post("/verify-otp", (req, res) => {
     }
 
     if (otp !== entry.code) {
-        return res.status(401).json({ success: false, message: "Invalid OTP" });
+        return res.status(400).json({ success: false, message: "Invalid OTP" });
     }
 
     delete otpStore[email];
@@ -220,29 +203,6 @@ app.post('/register', async(req, res) => {
 
 
 
-//api to fetch user profile by email
-app.get("/api/profile/:email", async(req, res) => {
-    const email = decodeURIComponent(req.params.email);
-
-    try {
-        const snapshot = await firestore
-            .collection("students")
-            .where("Email", "==", email)
-            .limit(1)
-            .get();
-
-        if (snapshot.empty) {
-            return res.status(404).json({ error: "Profile not found" });
-        }
-
-        const profileData = snapshot.docs[0].data();
-        res.json(profileData);
-    } catch (err) {
-        console.error("Error fetching profile:", err);
-        res.status(500).json({ error: "Failed to fetch profile" });
-    }
-});
-
 
 
 // cache to store dropdown metadata 
@@ -334,36 +294,38 @@ app.get('/alumni', async(req, res) => {
 });
 
 
-// PATCH /api/profile/:email  ->  Update only verified field
-app.patch('/api/profile/:email', async(req, res) => {
-    const email = req.params.email;
-    const { verified } = req.body;
 
-    if (typeof verified !== 'boolean') {
-        return res.status(400).json({ error: 'Invalid request: verified must be boolean' });
-    }
+
+//api to fetch user profile by email
+app.patch("/api/profile/:email", async(req, res) => {
+    const email = decodeURIComponent(req.params.email);
+    const updatedData = req.body;
 
     try {
         const snapshot = await firestore
-            .collection('students')
-            .where('Email', '==', email)
+            .collection("students")
+            .where("Email", "==", email)
             .limit(1)
             .get();
 
         if (snapshot.empty) {
-            return res.status(404).json({ error: 'Profile not found' });
+            return res.status(404).json({ error: "Profile not found" });
         }
 
-        const docRef = snapshot.docs[0].ref;
+        // Get document ID to update
+        const docId = snapshot.docs[0].id;
 
-        await docRef.update({ verified });
+        // Update document with new data
+        await firestore.collection("students").doc(docId).update(updatedData);
 
-        res.json({ success: true, message: `Verified field updated to ${verified}` });
+        res.json({ message: "Profile updated successfully" });
     } catch (err) {
-        console.error('Error updating verified field:', err);
-        res.status(500).json({ error: 'Failed to update verification status' });
+        console.error("Error updating profile:", err);
+        res.status(500).json({ error: "Failed to update profile" });
     }
 });
+
+
 
 // Start server
 app.listen(PORT, () => {
