@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./UpdateProfileModal.css";
 import pic from './profile_pic.png';
+import useStore  from "../../Store";
 
 const UpdateProfileModal = ({ isOpen, onClose, onSuccess }) => {
   const modalRef = useRef(null);
   const [profile, setProfile] = useState(null);
+  const email = useStore((state)=>state.userEmail);
   //const [showSuccess, setShowSuccess] = useState(false);
 
 
   useEffect(() => {
     if (!isOpen) return;
 
-    const email = localStorage.getItem('userEmail');
     console.log("Got email from localStorage:", email);
 
     if (!email) {
@@ -73,37 +74,52 @@ if(!isOpen)return null;
         <form className="update-form"
 
             onSubmit={(e) => {
-                e.preventDefault();
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
 
-                // Immediately close modal
-                onClose();
+  const updatedData = {
+    Name: formData.get("name"),
+    Email: formData.get("email"),
+    Deparment: formData.get("department"),
+    Degree: formData.get("degree"),
+    YearOfPassOut: formData.get("year"),
+    ContactNumber1: formData.get("contact1"),
+    ContactNumber2: formData.get("contact2"),
+    WhatsAppNumber: formData.get("whatsapp"),
+    CountryCode: formData.get("country"),
+    LikedInProfile: formData.get("linkedin"),
+    Hostel: formData.get("hostel"),
+    Awards: formData.get("awards"),
+    Designation: formData.get("designation"),
+    Organisation: formData.get("organisation"),
+    Current_Location: formData.get("location"),
+    testimonial: formData.get("testimonial"),
+    verified: false,  // optional: reset to unverified
+  };
 
-                // Trigger toaster in parent
-                onSuccess();
+  fetch(`https://alumni-website-v7pq.onrender.com/api/profile/${encodeURIComponent(profile.Email)}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(updatedData),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error("Failed to update profile");
+      return res.json();
+    })
+    .then((data) => {
+      console.log("Profile updated:", data);
+      onSuccess(); // toaster
+      onClose();   // close modal
+    })
+    .catch((err) => {
+      console.error("Error updating profile:", err);
+      alert("Failed to update profile. Try again.");
+    });
+}}
 
-                fetch(`https://alumni-website-v7pq.onrender.com/api/profile/${encodeURIComponent(profile.Email)}`, {
-                    method: 'PATCH', // or PUT if your backend requires full updates
-                    headers: {
-                      'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ verified: false }),
-                  })
-                    .then(res => {
-                      if (!res.ok) throw new Error("Failed to update verification status");
-                      return res.json();
-                    })
-                    .then(data => {
-                      console.log("Marked user as unverified:", data);
-                      // onSuccess();  // Show toaster
-                      // onClose();    // Close modal
-                    })
-                    .catch(err => {
-                      console.error("Error updating verified field:", err);
-                      alert("Something went wrong. Please try again.");
-                    });
-
-                
-                }}
 
 
             >

@@ -13,7 +13,6 @@ import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 import LIfeAtIITPKD from "./pages/LIfeAtIITPKD"
 import NotableAlumni from "./pages/NotableAlumni"
 import AlumniDirectorySignIn from "./pages/AlumniDirectorySignIn"
-import SignIn from "./components/DirectorySignIn/SignIn"
 import PrivateRoute1 from './ProtectedRoute';
 import AlumniDirectory from "./pages/AlumniDirectory"
 import useStore from './Store';
@@ -23,8 +22,7 @@ import SignUpPage from './components/Signup/signup';
 import Admin from './components/Admin/Admin';
 import './App.css';
 function App() {
-  // const [token, setToken] = useState(false);
-  const { token, setToken } = useStore();
+  const token = useStore((state) => state.token);
   return (
   <div className='bg'>
     <Router>
@@ -45,13 +43,13 @@ function App() {
         <Route path="/Otp" element={<OTPSignIn/>}/>
         <Route path="/NotableAlumni" element={<NotableAlumni />} />
         <Route path="/AlumniDirectorySignIn" element={<AlumniDirectorySignIn/>}/>
-        <Route path="/SignIn" element={<SignIn setToken={setToken} />} />
+        {/* <Route path="/SignIn" element={<SignIn setToken={setToken} />} /> */}
         <Route path="/SignUp" element={<SignUpPage />} />
         
         <Route element={<PrivateRoute1 token={token}/>}> 
             <Route path="/AlumniDirectory" element={<AlumniDirectory/>}/>    
         </Route>
-        {/* <Route path="*" element={<NotFoundPage />} /> */}
+        {/* <Route path="*" element={<NotFoundPage />} />  */}
       </Routes>
       </Router>
     </div>

@@ -13,10 +13,12 @@ const OTPSignIn = () => {
   const otpSectionRef = useRef(null);
   const successMessageRef = useRef(null);
   const formRef = useRef(null);
-  const { setToken } = useStore(); // ✅ Get token setter inside the component
+  const setToken = useStore((state) => state.setToken);
+  const token = useStore((state) => state.token);
   const [emailNotFound, setEmailNotFound] = useState(false); //for handling email not found state
+  const setUserEmail = useStore((state) => state.setUserEmail);
 
-  console.log("Token state:", setToken);
+  console.log("Token state:", token);
   useEffect(() => {
     initializeOTPSignIn({
       emailInputRef,
@@ -27,9 +29,11 @@ const OTPSignIn = () => {
       otpSectionRef,
       successMessageRef,
       formRef,
+      token,
       setToken, // ✅ Pass Zustand method here
+      setUserEmail,
       onSuccessRedirect: () => {
-        // window.location.href = '/profile'; // or useNavigate for React Router
+        window.location.href = '/#'; // or useNavigate for React Router
       },
       onEmailNotFound: () => {
         setEmailNotFound(true); // Show popup if email not found
@@ -67,7 +71,7 @@ const OTPSignIn = () => {
         <form className="signin-form" ref={formRef}>
           <div className="form-group">
             <label htmlFor="email">Email Address</label>
-            <input ref={emailInputRef} type="email" placeholder="your.email@iitpkd.ac.in" required />
+            <input ref={emailInputRef} type="email" placeholder="your@gmail.com" required />
             <span className="error-message" id="emailError"></span>
           </div>
 

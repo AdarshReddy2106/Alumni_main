@@ -5,6 +5,7 @@ import UpdateProfileModal from "./UpdateProfileModal";
 import pic from './profile_pic.png'; // Default profile picture
 import iitpkdlogo from './iitpkdlogo.jpg';
 import iarcell_logo from './iarcell_logo.png';
+import  useStore  from '../../Store';
 
 
 const AlumniProfile = () => {
@@ -13,6 +14,7 @@ const AlumniProfile = () => {
   const [showVerifyModal, setShowVerifyModal] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [verified,setVerified]=useState(false);
+   const email = useStore((state)=>state.userEmail);
 
   const handleSuccess = () => {
     setShowSuccess(true);
@@ -26,7 +28,6 @@ const AlumniProfile = () => {
   // }
 
   useEffect(() => {
-    const email = localStorage.getItem('userEmail');
     if (!email) {
       console.error('No email found in localStorage');
       return;
@@ -243,9 +244,9 @@ const AlumniProfile = () => {
             <section className="details-section">
               <h2 className="section-title">Professional Details</h2>
               <div className="details-grid">
-                <Detail label="Job Title" value={profile.Designation} />
-                <Detail label="Company" value={profile.Organisation} />
-                <Detail label="Location" value={profile.Current_Location} />
+                <Detail label="Job Title" value={profile.Designation || "Not provided"} />
+                <Detail label="Company" value={profile.Organisation || "Not provided"} />
+                <Detail label="Location" value={profile.Current_Location|| "Not provided"} />
               </div>
             </section>
           </div>

@@ -12,10 +12,13 @@ const Navbar = () => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileDropdown, setShowMobileDropdown] = useState(false);
   const [showMobileEventsDropdown, setShowMobileEventsDropdown] = useState(false);
-  const { token, setToken } = useStore();
+  const token = useStore((state) => state.token);
+// const setToken = useStore((state) => state.setToken);
+
+  const logout = useStore((state) => state.logout);
 
   const handleLogout = () => {
-    setToken(false);
+    logout();
     setShowMenu(false);
   };
 

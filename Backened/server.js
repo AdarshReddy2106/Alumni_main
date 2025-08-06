@@ -127,6 +127,7 @@ app.post("/verify-otp", (req, res) => {
 
     delete otpStore[email];
     res.json({ success: true, message: "OTP verified successfully" });
+
 });
 
 
@@ -220,25 +221,29 @@ app.post('/register', async(req, res) => {
 
 
 //api to fetch user profile by email
-app.get('/api/profile/:email', async(req, res) => {
+app.patch("/api/profile/:email", async(req, res) => {
     const email = req.params.email;
+    const updates = req.body;
 
     try {
         const snapshot = await firestore
-            .collection('students')
-            .where('Email', '==', email)
+            .collection("students")
+            .where("Email", "==", email)
             .limit(1)
             .get();
 
         if (snapshot.empty) {
-            return res.status(404).json({ error: 'Profile not found' });
+            return res.status(404).json({ error: "Profile not found" });
         }
 
-        const doc = snapshot.docs[0];
-        res.json({ id: doc.id, ...doc.data() });
+        const docRef = snapshot.docs[0].ref;
+
+        await docRef.update(updates);
+
+        res.json({ success: true, message: "Profile updated successfully" });
     } catch (err) {
-        console.error('Error fetching profile:', err);
-        res.status(500).json({ error: 'Failed to fetch profile' });
+        console.error("Error updating profile:", err);
+        res.status(500).json({ error: "Failed to update profile" });
     }
 });
 

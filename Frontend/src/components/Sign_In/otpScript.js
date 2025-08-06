@@ -1,11 +1,9 @@
-const BASE_URL = "https://alumni-website-v7pq.onrender.com"
-    // window.location.hostname === "localhost" ?
-    // "http://localhost:3000" :
-    // "https://your-production-url.com";
-
+const BASE_URL = "https://alumni-website-v7pq.onrender.com";
+// window.location.hostname === "localhost" ?
+// "http://localhost:3000" :
+// "https://your-production-url.com";
 
 export function initializeOTPSignIn({
-
     emailInputRef,
     otpInputRef,
     sendOtpBtnRef,
@@ -14,15 +12,14 @@ export function initializeOTPSignIn({
     otpSectionRef,
     successMessageRef,
     formRef,
+    token,
     setToken,
+    setUserEmail,
     onSuccessRedirect = () => {
         window.close();
-
     },
     onEmailNotFound = () => {},
 }) {
-
-
     let currentEmail = "";
     let resendTimer = null;
     let attempts = 0;
@@ -80,7 +77,6 @@ export function initializeOTPSignIn({
             showError("emailError", "Network error.");
         }
         hideLoader(sendOtpBtnRef.current);
-
     }
 
     async function verifyOTP() {
@@ -92,17 +88,22 @@ export function initializeOTPSignIn({
 
         showLoader(loginBtnRef.current);
         try {
-            const res = await fetch(
-                `${BASE_URL}/verify-otp `, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email: currentEmail, otp }),
-                }
-            );
+            const res = await fetch(`${BASE_URL}/verify-otp`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email: currentEmail, otp }),
+            });
             const result = await res.json();
 
             if (result.success) {
-                if (!setToken) setToken(true); // ✅ Set login token in Zustand
+
+                if (setToken) {
+                    setToken(true);
+                    if (setUserEmail) setUserEmail(currentEmail); // ✅ Add this line
+                }
+
+
+
                 formRef.current.style.display = "none";
                 successMessageRef.current.classList.add("active");
                 let counter = 2;
@@ -153,7 +154,7 @@ export function initializeOTPSignIn({
                 resendBtnRef.current.textContent = "Resend OTP";
             } else {
                 resendBtnRef.current.textContent = `
-                    Resend OTP(${seconds }
+                    Resend OTP(${seconds}
                         s)
                     `;
             }
