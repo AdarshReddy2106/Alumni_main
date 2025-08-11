@@ -229,50 +229,68 @@ app.get("/api/profile/:email", async(req, res) => {
 
 
 
-// cache to store dropdown metadata 
-const metaCache = { years: null, degrees: null, departments: null, ts: 0 };
-const META_TTL = 10 * 60 * 1000; // 10 min
 
-// Function to get dropdown metadata from Firestore (with caching)
-async function getMeta() {
-    if (Date.now() - metaCache.ts < META_TTL && metaCache.years) return metaCache;
-    const doc = await firestore.doc('metadata/dropdowns').get();
-    Object.assign(metaCache, doc.data(), { ts: Date.now() });
-    return metaCache;
+// cache to store dropdown metadata 
+const metaCache = {
+    years: null,
+    degrees: null,
+    departments: null,
+    lastFetched: 0,
+};
+const META_TTL = 10 * 60 * 1000; // 10 minutes
+
+async function getMetaWithCache() {
+    const now = Date.now();
+    if (now - metaCache.lastFetched < META_TTL && metaCache.years) {
+        return metaCache;
+    }
+
+    try {
+        const doc = await firestore.doc('metadata/dropdowns').get();
+        const data = doc.data();
+
+        if (data) {
+            metaCache.years = data.years || [];
+            metaCache.degrees = data.degrees || [];
+            metaCache.departments = data.departments || [];
+            metaCache.lastFetched = now;
+        }
+
+        return metaCache;
+    } catch (err) {
+        console.error('Error fetching metadata from Firestore:', err);
+        throw err;
+    }
 }
 
 
-
-// API to get dropdown options
-app.get('/passout-years', async(_, res) => {
+app.get("/passout-years", async(_, res) => {
     try {
-        const { years } = await getMeta();
-        res.json(years.map(y => ({ YearOfPassOut: y })));
-    } catch (e) {
-        console.error(e);
-        res.status(500).json({ error: 'Internal Server Error' });
+        const { years } = await getMetaWithCache();
+        res.json(years.map((y) => ({ YearOfPassOut: y })));
+    } catch {
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
-app.get('/degrees', async(_, res) => {
+app.get("/degrees", async(_, res) => {
     try {
-        const { degrees } = await getMeta();
-        res.json(degrees.map(d => ({ Degree: d })));
-    } catch (e) {
-        console.error(e);
-        res.status(500).json({ error: 'Internal Server Error' });
+        const { degrees } = await getMetaWithCache();
+        res.json(degrees.map((d) => ({ Degree: d })));
+    } catch {
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
-app.get('/departments', async(_, res) => {
+app.get("/departments", async(_, res) => {
     try {
-        const { departments } = await getMeta();
-        res.json(departments.map(d => ({ Deparment: d })));
-    } catch (e) {
-        console.error(e);
-        res.status(500).json({ error: 'Internal Server Error' });
+        const { departments } = await getMetaWithCache();
+        res.json(departments.map((d) => ({ Deparment: d })));
+    } catch {
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
 
 
 //API to Get Alumni Data with Filters
