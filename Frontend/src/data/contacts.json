@@ -1,36 +1,36 @@
 {
     "faculty": [{
             "name": "Dr. Subrahmanyam Mula",
-            "title": "Assistant Professor",
+            "title": "Associate Professor",
             "department": "Electrical Engineering",
-            "role": "Faculty-in-charge, International and Alumni Relations",
-            "email": "fc_iar@iitkpd.ac.in",
+            "role": "Faculty-in-charge, IAR Student Cell",
+            "email": "fc_iar@iitpkd.ac.in",
             "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/Subramaniam%20Mula.jpg"
         },
 
         {
             "name": "Ms. Nibedita Dey",
-            "title": "Assistant Manager, IAR",
-            "address": "D3 Block, Sahyadri Campus",
-            "phone": "+91 4923226533",
+            "title": "Assistant Manager, IAR Office",
+            "address": "Dr. APJ Abdul Kalam Block",
+            "phone": " +91-4912 09 2111",
             "mobile": "+91 7595911769",
-            "email": "ir_office@iitkpd.ac.in",
+            "email": "am_iar@iitpkd.ac.in",
             "image": "https://ir.iitpkd.ac.in/sites/default/files/inline-images/nibe-resized.jpg"
         }
     ],
     "studentHead": [{
-        "name": "Karthikeya Darishetty",
-        "title": "Student head",
-        "email": "alumnicell@iitkpd.ac.in",
-        "linkedin": "https://www.linkedin.com/in/srujana-jasmine-komarabathina-4234a423a/",
+        "name": "KARTHIKEYA DARISHETTY",
+        "title": "Student Head",
+        "email": "alumnicell@iitpkd.ac.in",
+        "linkedin": "https://www.linkedin.com/in/karthikeya-darishetty/",
         "image": "/assets/club/karthekeya.jpg"
     }],
     "coreTeam": [{
             "name": "MARAM RUTHVI",
-            "title": "Alumni Relations Lead",
+            "title": "International Relations Lead",
             "email": "142301021@smail.iitpkd.ac.in",
-            "linkedin": "https://www.linkedin.com/in/aakanksha-buraga-ab593a244/",
-            "image": "/assets/club/mithil.jpg"
+            "linkedin": "https://www.linkedin.com/in/ruthvi-maram/",
+            "image": "/assets/club/ruthvi.jpg"
         },
         {
             "name": "SOORAM MITHIL REDDY",
@@ -40,15 +40,15 @@
             "image": "/assets/club/mithil.jpg"
         },
         {
-            "name": "Kallepally Sai Kiran",
+            "name": "KALLEPALLY SAI KIRAN",
             "title": "Technical Lead",
             "email": "112201044@smail.iitpkd.ac.in",
             "linkedin": "https://www.linkedin.com/in/kallepally-sai-kiran-5633992a8/",
             "image": "/assets/club/sai_kiran.jpg"
         },
         {
-            "name": "ASHWINI KANNAN.K",
-            "title": "Design adn PR Lead",
+            "name": "ASHWINI KANNAN",
+            "title": "Design and PR Lead",
             "email": "142201007@smail.iitpkd.ac.in",
             "linkedin": "https://www.linkedin.com/in/ashwinikannank/",
             "image": "/assets/club/ashwini.jpg"

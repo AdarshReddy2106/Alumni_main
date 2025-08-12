@@ -2,13 +2,13 @@
     "messages": [{
             "role": "Director's Message",
             "name": "Prof. A. Seshadri Sekhar",
-            "title": "Professor & Director",
+            "title": "Director, IIT Palakkad",
             "image": "/assets/oldman.jpg",
             "paragraphs": [
                 "Congratulations on reaching this significant milestone! Your hard work, resilience, and dedication have brought you to this proud moment. As you step into the next chapter of your lives, remember to embrace change, stay curious, uphold integrity, and believe in yourselves.",
                 "With this end comes a new beginning. The world awaits your talents and contributions. Carry forward the lessons learned, the friendships forged, and the memories cherished. You have the power to inspire, to innovate, and to make a difference.",
                 "You are the face of IIT Palakkad, and you will always be a part of this institution. We encourage you to maintain strong ties with your alma mater and continue to be involved in its future.",
-                "We are incredibly proud of you and excited for the future you will create. Congratulations, Class of 2024!"
+                "We are incredibly proud of you and excited for the future you will create. Congratulations, Class of 2025!"
             ]
         },
         {
@@ -27,13 +27,13 @@
         {
             "role": "Faculty-in-Charge Message",
             "name": "Dr. Subrahmanyam Mula",
-            "title": "International and Alumni Relations",
+            "title": "Associate Professor",
             "image": "/assets/Mula.jpg",
             "paragraphs": [
                 "Heartfelt congratulations. This moment of graduation is a result of years of hard work and dedication. You have acquired knowledge and grown as a strong individual with confidence, ready to make a significant impact on the world.",
                 "As you step into the next chapter of your lives, remember that you are now part of a global network of alumni who share a common bond with IITs.",
                 "We are confident you will continue excelling and contributing meaningfully to society. You always have a home here, and we are eager to hear about your achievements.",
-                "Congratulations once again, Class of 2024! Go forward with courage, curiosity, and conviction."
+                "Congratulations once again, Class of 2025! Go forward with courage, curiosity, and conviction."
             ]
         }
     ],

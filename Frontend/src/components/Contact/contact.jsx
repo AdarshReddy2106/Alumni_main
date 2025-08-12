@@ -32,7 +32,7 @@ const ContactCard = ({ person }) => (
       {person.linkedin && (
         <p className="title">
           <a href={person.linkedin} target="_blank" rel="noopener noreferrer">
-            linkedin
+            Linkedin
           </a>
         </p>
       )}

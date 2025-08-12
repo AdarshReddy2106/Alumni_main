@@ -17,23 +17,27 @@ function Footer() {
             <ul>
               {/* <li><a href="#">facebook-f</a></li> */}
               {/* <li><a href="#">twitter</a></li> */}
-              <li><a href="https://www.linkedin.com/in/iit-palakkad-alumni-relations-19142a25b/">linkedin-Alumni Relations/1</a></li>
-              <li><a href="https://www.linkedin.com/in/iit-palakkad-alumni-relations-19142a25b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">linkedin-Alumni Relations/2 </a></li>
-              <li><a href="https://www.linkedin.com/company/international-relations-iit-palakkad/">linkedin-International Relations</a></li>
+              <li><a href="https://iitpkd.ac.in/guest-house-hamsanandi">Guest-House</a></li>
+              <li><a href="https://ir.iitpkd.ac.in/">International Relations website</a></li>
 
-              <li><a href="https://www.instagram.com/iarcell.iitpkd/">instagram</a></li>
-              <li><a href="http://www.youtube.com/@IARCellIITPalakkad">youtube</a></li>
+              <li><a href="https://www.linkedin.com/in/iit-palakkad-alumni-relations-19142a25b/">Linkedin-Alumni Relations</a></li>
+              {/* <li><a href="https://www.linkedin.com/in/iit-palakkad-alumni-relations-19142a25b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app">linkedin-Alumni Relations/2 </a></li> */}
+              <li><a href="https://www.linkedin.com/company/international-relations-iit-palakkad/">Linkedin-International Relations</a></li>
+
+              <li><a href="https://www.instagram.com/iarcell.iitpkd/">Instagram</a></li>
+              <li><a href="http://www.youtube.com/@IARCellIITPalakkad">Youtube</a></li>
+
+             
 
 
             </ul>
           </div>
           <div className="footer-section">
-            <h3>CONTACT</h3>
+            <h3>CONTACT US</h3>
             {/* <p>F1 Cabin, AGORA Building,NILA Campus IIT Palakkad Kerala 678623</p> */}
-            
-              <p className="address_data">  Dr. APJ Abdul Kalam Block,</p>
               <p  className="address_data">First Floor (Right Wing), </p>
-              <p className="address_data">Sahyadri Campus,  </p>
+              <p className="address_data">  Dr. APJ Abdul Kalam Block,</p>
+              {/* <p className="address_data">Sahyadri Campus,  </p> */}
               <p className="address_data">Indian Institute of Technology Palakkad, </p>
               <p className="address_data">Kanjikode West, Palakkad - 678623,</p>
               <p className="address_data"> Kerala.</p>
@@ -41,7 +45,7 @@ function Footer() {
               
             <p className="address_data">ar_office@iitpkd.ac.in</p>
             <p className="address_data">Mob: +91 7595911769</p>
-            <p className="address_data">Land Line : +91 4923 226 533</p>
+            <p className="address_data">Landline: +91-4912 09 2111</p>
           </div>
         </div>
       </div>
