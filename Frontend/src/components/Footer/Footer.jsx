@@ -50,7 +50,7 @@ function Footer() {
         </div>
       </div>
       <div className="copyright">
-        <p>Copyright ©2023 Indian Institute of Technology Palakkad. All Rights Reserved.</p>
+        <p>Copyright ©2025 Indian Institute of Technology Palakkad. All Rights Reserved.</p>
       </div>
       
     </footer>
