@@ -9,6 +9,7 @@ import Event3 from "./pages/Events/Event3"
 import Event4 from "./pages/Events/Event4"
 import Event5 from "./pages/Events/Event5"
 import Event6 from "./pages/Events/Event6"
+import Events from "./pages/Events"
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop"
 import LIfeAtIITPKD from "./pages/LIfeAtIITPKD"
 import NotableAlumni from "./pages/NotableAlumni"
@@ -38,6 +39,7 @@ function App() {
         <Route path="/Event4" element={<Event4 />} />
         <Route path="/Event5" element={<Event5 />} />
         <Route path="/Event6" element={<Event6 />} />
+        <Route path="/events" element={<Events />} />
         <Route path="/LifeAtIITPKD" element={<LIfeAtIITPKD/>}/>
         <Route path="/profile" element={<AlumniProfile />} />
         <Route path="/Admin" element={<Admin/>}/>

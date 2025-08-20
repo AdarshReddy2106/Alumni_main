@@ -22,10 +22,24 @@
 }
 
 .event-header h1 {
-    color: #2c3e50;
+    color: #000000;
     font-size: 2.5rem;
     margin: 0;
     font-weight: 700;
+    position: relative;
+    padding-bottom: 0.75rem;
+}
+
+.event-header h1::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -0.4rem;
+    width: 180px;
+    height: 4px;
+    background: #FFD700;
+    border-radius: 3px;
 }
 
 .event-date {
@@ -147,6 +161,19 @@
     color: #27ae60;
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.speaker-details h3::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 72px;
+    height: 3px;
+    background: #FFD700;
+    border-radius: 3px;
 }
 
 .speaker-details p {
@@ -159,6 +186,20 @@
     font-size: 1.5rem;
     margin-bottom: 1rem;
     font-weight: 600;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.event-content h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 140px;
+    max-width: 40%;
+    height: 3px;
+    background: #FFD700;
+    border-radius: 3px;
 }
 
 .event-content p {

@@ -11,7 +11,6 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showMobileDropdown, setShowMobileDropdown] = useState(false);
-  const [showMobileEventsDropdown, setShowMobileEventsDropdown] = useState(false);
   const token = useStore((state) => state.token);
 // const setToken = useStore((state) => state.setToken);
 
@@ -41,17 +40,7 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className="desktopMenuListItem" onMouseEnter={() => setShowDropdown(true)} onMouseLeave={() => setShowDropdown(false)}>
-          Events
-          {showDropdown && (
-            <div className="dropdownMenu">
-              <Link to="/Event1" className="dropdownListItem">SAC Alumni Meet</Link>
-              <Link to="/Event2" className="dropdownListItem">CV Writing Session</Link>
-              <Link to="/Event3" className="dropdownListItem">Session on Building a tech startup</Link>
-              <Link to="/Event4" className="dropdownListItem">Informal Alumni Student Meet</Link>
-            </div>
-          )}
-        </div>
+        <Link to="/events" className="desktopMenuListItem">Events</Link>
 
         {token ? (
           <div className="authSection">
@@ -82,17 +71,7 @@ const Navbar = () => {
           </div>
         )}
 
-        <div className="ListItem" onClick={() => setShowMobileEventsDropdown(!showMobileEventsDropdown)}>
-          Events
-        </div>
-        {showMobileEventsDropdown && (
-          <div className="mobileDropdown">
-            <Link to="/Event1" className="dropdownListItem" onClick={() => setShowMenu(false)}>SAC Alumni Meet</Link>
-            <Link to="/Event2" className="dropdownListItem" onClick={() => setShowMenu(false)}>CV Writing Session</Link>
-            <Link to="/Event3" className="dropdownListItem" onClick={() => setShowMenu(false)}>Session on Building a tech startup</Link>
-            <Link to="/Event4" className="dropdownListItem" onClick={() => setShowMenu(false)}>Informal Alumni Student Meet</Link>
-          </div>
-        )}
+        <Link to="/events" className="ListItem" onClick={() => setShowMenu(false)}>Events</Link>
 
         {token ? (
           <>
