@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../Main/Main.css';
 import messagesData from '../../data/messages.json';
 import TestimonialSlider from './TestimonialSlider';
+import MessageWithReadMore from '../MessageWithReadMore/MessageWithReadMore';
 
 function Main() {
   const [messages, setMessages] = useState([]);
@@ -28,13 +29,7 @@ function Main() {
               </div>
             </div>
 
-            <div className="message">
-              {msg.paragraphs.map((p, i) => (
-                <p key={i} className="paragraph">{p}</p>
-              ))}
-              <br /><br />
-              <hr />
-            </div>
+            <MessageWithReadMore paragraphs={msg.paragraphs} role={msg.role} />
           </div>
         ))}
       </section>

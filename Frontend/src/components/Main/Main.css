@@ -103,6 +103,70 @@
     }
 }
 
+/* Read More Button */
+.read-more-btn {
+    background: linear-gradient(135deg, #0975a8, #075e8a);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 1rem 0;
+    box-shadow: 0 4px 15px rgba(9, 117, 168, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.read-more-btn:hover {
+    background: linear-gradient(135deg, #075e8a, #054d75);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(9, 117, 168, 0.4);
+}
+
+.read-more-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(9, 117, 168, 0.3);
+}
+
+/* Director's Message Button - Yellow Background */
+.read-more-btn.director-btn {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+}
+
+.read-more-btn.director-btn:hover {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+}
+
+.read-more-btn.director-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(243, 156, 18, 0.3);
+}
+
+/* Dean's Message Button - Blue Background */
+.read-more-btn.dean-btn {
+    background: linear-gradient(135deg, #0975a8, #075e8a);
+    color: white;
+    box-shadow: 0 4px 15px rgba(9, 117, 168, 0.3);
+}
+
+.read-more-btn.dean-btn:hover {
+    background: linear-gradient(135deg, #075e8a, #054d75);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(9, 117, 168, 0.4);
+}
+
+.read-more-btn.dean-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(9, 117, 168, 0.3);
+}
+
 
 /* Mobile */
 

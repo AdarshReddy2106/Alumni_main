@@ -1,0 +1,35 @@
+.read-more-btn.director-btn {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: white;
+    box-shadow: 0 2px 8px rgba(243, 156, 18, 0.2);
+    padding: 0.5rem 1.2rem;
+    font-size: 0.75rem;
+}
+
+.read-more-btn.director-btn:hover {
+    background: linear-gradient(135deg, #e67e22, #d35400);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 12px rgba(243, 156, 18, 0.3);
+}
+
+.read-more-btn.director-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(243, 156, 18, 0.2);
+}
+
+
+@media screen and (max-width: 768px) {
+    .read-more-btn.read-more-btn.director-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.7rem;
+        margin: 0.5rem 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .read-more-btn.read-more-btn.director-btn {
+        padding: 0.35rem 0.9rem;
+        font-size: 0.65rem;
+        margin: 0.4rem 0;
+    }
+}
