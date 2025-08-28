@@ -1,47 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-.contact-page {
-    /* max-width: 65rem; */
-    margin: 1rem auto;
-    padding: 10px 20px;
-    font-family: 'Roboto', sans-serif;
-    /* background-color: #f0f4f85a; */ /* removed to match the App.css background */
-    /* display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; */
+.contact-section {
+    margin: 2rem auto;
+    border-radius: 12px;
+    background: #ffffff;  /* box background */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    max-width: 70rem;
+    overflow: hidden;   /* so header blends with box */
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #2c3e50;
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-.techmembers {
-    margin: 0.5rem 0rem;
-    /* color: red; */
+/* Highlighted bar at top of each box */
+.section-title {
+    margin: 0;
+    background: #21cee8;   /* header bar color */
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0.4rem 1.2rem;
+    text-align: left;
 }
 
 .contact-cards {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1.5rem; /* spacing inside section box */
 }
 
 .contact-card {
     background-color: #ffffff;
     border-radius: 12px;
     overflow: hidden;
-    margin-bottom: 10px;
     box-shadow: 0 4px 6px rgba(21, 20, 20, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     height: auto;
     width: 14rem;
 }
@@ -56,77 +49,27 @@ h1 {
     overflow: hidden;
 }
 
-.members {
-    /* max-width: 65rem; */
-    width: 100vm;
-    display: flex;
-    align-items: center;
-    padding: 1rem 0rem;
-    margin: 0 auto;
-    justify-content: space-between;
-    margin: 0 2rem;
-    flex-wrap: wrap;
-}
-
-h3 {
-    align-content: center;
-    align-items: center;
-}
-
-.club {
-    max-width: 65rem;
-    width: 100vm;
-    display: flex;
-    /* align-items: center; */
-    padding: 1rem 0rem;
-    margin: 0 auto;
-    justify-content: space-between;
-    flex-direction: column;
-    object-position: center;
-}
-
-.tech {
-    padding: 1rem 0.5rem;
-    margin: 0.25rem auto;
-    color: black;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 10px rgba(31, 31, 28, 0.5);
-    font-size: large;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tech:hover {
-    background-color: rgba(249, 160, 18, 0.877);
-    transform: translateY(-5px);
-    box-shadow: 0 5px 10px rgba(31, 31, 29, 0.5);
-}
-
-.faculty {
-    display: flex;
-    align-items: center;
-    object-position: center;
-}
-
 .card-image img {
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
     height: 100%;
 }
 
 .card-content {
-    padding: 20px;
+    padding: 15px;
     text-align: center;
 }
 
 .contact-card h3 {
     margin-top: 0;
-    margin-bottom: 1px;
+    margin-bottom: 4px;
     color: #34495e;
     font-size: 1rem;
+    font-weight: 600;
 }
 
 .contact-card p {
-    margin: 1px 0;
+    margin: 2px 0;
     font-size: 14px;
     color: #7f8c8d;
 }
@@ -134,7 +77,7 @@ h3 {
 .contact-card .title {
     font-weight: 500;
     color: #3498db;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .contact-card .email,
@@ -142,11 +85,12 @@ h3 {
 .contact-card .mobile {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-top: 5px;
 }
 
 .contact-card i {
-    margin-right: 10px;
+    margin-right: 8px;
     color: #3498db;
 }
 

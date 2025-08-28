@@ -43,8 +43,9 @@ const ContactCard = ({ person }) => (
 const ContactPage = () => {
   return (
     <div>
-      <div className="contact-page">
-        <h1>APPLICATIONS & GENERAL QUERIES</h1>
+      {/* Faculty / Office Address */}
+      <div className="contact-section">
+        <h1 className="section-title">Office Address</h1>
         <div className="contact-cards">
           {contacts.faculty.map((person, idx) => (
             <ContactCard key={idx} person={person} />
@@ -52,18 +53,13 @@ const ContactPage = () => {
         </div>
       </div>
 
-      <div className="contact-page">
-        <h1>Student head</h1>
+      {/* Student Team (Head + Core) */}
+      <div className="contact-section">
+        <h1 className="section-title">Student Team</h1>
         <div className="contact-cards">
           {contacts.studentHead.map((person, idx) => (
             <ContactCard key={idx} person={person} />
           ))}
-        </div>
-      </div>
-
-      <div className="contact-page">
-        <h1>Core Team</h1>
-        <div className="contact-cards">
           {contacts.coreTeam.map((person, idx) => (
             <ContactCard key={idx} person={person} />
           ))}
